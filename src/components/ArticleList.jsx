@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { fetchArticles } from "./api";
 import ArticleCard from "./ArticleCard.jsx";
+import "./ArticleList.css";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [limit, setLimit] = useState(10);
+  const [isLoading, setIsLoading] = useState(true);
 
   //increase number of articles shown when button clicked
   const incrementLimit = async (increment) => {
@@ -21,6 +23,7 @@ export default function ArticleList() {
   // articles will re-render each time limit is amended
   useEffect(() => {
     loadArticles();
+    setIsLoading(false);
   }, [limit]);
 
   const IncrementButton = () => {
@@ -28,6 +31,7 @@ export default function ArticleList() {
       return <h2>No more articles</h2>;
     return (
       <button
+        className="increment-button"
         onClick={() => {
           incrementLimit(5);
         }}
