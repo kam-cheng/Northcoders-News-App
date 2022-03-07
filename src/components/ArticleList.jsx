@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchArticles } from "./api";
 import ArticleCard from "./ArticleCard.jsx";
+import IncrementButton from "./IncrementButton";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
@@ -23,20 +24,6 @@ export default function ArticleList() {
     loadArticles();
   }, [limit]);
 
-  const IncrementButton = () => {
-    if (articleList[0] && limit > articleList[0].total_count)
-      return <h2>No more articles</h2>;
-    return (
-      <button
-        onClick={() => {
-          incrementLimit(5);
-        }}
-      >
-        Load more Articles
-      </button>
-    );
-  };
-
   return (
     <section>
       <h2>Article List</h2>
@@ -45,7 +32,11 @@ export default function ArticleList() {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
       </ul>
-      <IncrementButton />
+      <IncrementButton
+        articleList={articleList}
+        incrementLimit={incrementLimit}
+        limit={limit}
+      />
     </section>
   );
 }
