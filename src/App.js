@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import ArticleList from "./components/ArticleList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TopicsArticles from "./components/Topics";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<ArticleList />} />
-          {/* <Route path="/topics/:topic" element={<Topic />} /> */}
+          <Route path="/topics/:topic" element={<TopicsArticles />} />
         </Routes>
       </div>
     </BrowserRouter>
