@@ -22,7 +22,7 @@ export default function ArticleList() {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
       </ul>
-      <button>Load more Articles</button>
+      <button onClick={() => console.log("click")}>Load more Articles</button>
     </section>
   );
 }
