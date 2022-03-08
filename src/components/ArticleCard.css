@@ -1,11 +1,7 @@
-.article-list {
-  padding: 20px;
-  color: #2a2b2a;
+.article-link {
+  color: inherit;
+  text-decoration: inherit;
 }
-.article-list ul {
-  list-style-type: none;
-}
-
 .article-card {
   border-radius: 25px;
   margin: 10px;
@@ -14,9 +10,13 @@
 }
 
 .icon {
-  font-size: 0.8em;
   vertical-align: middle;
   display: inline;
   padding: 5px;
+  width: 15px;
+}
+
+.icon.small {
+  font-size: 0.8em;
   width: 15px;
 }

@@ -1,3 +1,10 @@
 .title {
   text-transform: uppercase;
 }
+.article-list {
+  padding: 20px;
+  color: #2a2b2a;
+}
+.article-list ul {
+  list-style-type: none;
+}

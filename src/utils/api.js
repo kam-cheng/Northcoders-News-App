@@ -18,4 +18,11 @@ const fetchTopics = async () => {
   return topics;
 };
 
-export { fetchArticles, fetchTopics };
+const fetchArticle = async (articleId) => {
+  const {
+    data: { article },
+  } = await axios.get(`${apiLink}/articles/${articleId}`);
+  return article;
+};
+
+export { fetchArticles, fetchTopics, fetchArticle };
