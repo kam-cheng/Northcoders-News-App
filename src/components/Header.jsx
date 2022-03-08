@@ -1,3 +1,10 @@
 export default function Header() {
-  return <h1>NC News App</h1>;
+  return (
+    <header>
+      <h1>
+        NC News App
+        <img src="images/logo-newspaper.png" alt="nc news logo" />
+      </h1>
+    </header>
+  );
 }

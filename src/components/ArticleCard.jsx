@@ -15,11 +15,20 @@ export default function ArticleCard({
   return (
     <li>
       <article className="article-card">
-        <p>topic: {topic}</p>
+        <h3>{title}</h3>
+        <p>{topic}</p>
         <p>author: {author}</p>
         <p>created at: {created_at}</p>
-        <h3>{title}</h3>
-        <p>total comments: {comment_count}</p>
+        <div className="comments">
+          <p>
+            <img
+              className="comments"
+              src="/images/comment-icon.jpg"
+              alt="comments icon"
+            />
+            {comment_count} Comments
+          </p>
+        </div>
         <p>votes: {votes}</p>
       </article>
     </li>

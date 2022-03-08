@@ -6,4 +6,19 @@
 .App {
   text-align: center;
   font-family: "Roboto", sans-serif;
+  color: #1f1a38;
+  background-color: #eef0f2;
+}
+
+header h1 {
+  font-family: "Abril Fatface", cursive;
+  font-weight: 400;
+  padding: 20px;
+  background-color: #011638;
+  color: #eef0f2;
+}
+
+header img {
+  float: right;
+  width: 50px;
 }

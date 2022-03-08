@@ -1,55 +1,41 @@
 import { useState, useEffect } from "react";
-import { fetchArticles } from "./api";
+import { fetchArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard.jsx";
-import "./ArticleList.css";
+import IncrementButton from "./IncrementButton";
+import { useParams } from "react-router-dom";
 
 export default function ArticleList() {
+  const { topic } = useParams();
   const [articleList, setArticleList] = useState([]);
   const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
 
   //increase number of articles shown when button clicked
-  const incrementLimit = async (increment) => {
-    setLimit((currLimit) => {
-      return currLimit + increment;
-    });
-  };
-
   const loadArticles = async () => {
-    const articles = await fetchArticles(limit);
+    const articles = await fetchArticles(limit, topic);
     setArticleList(articles);
+    setIsLoading(false);
   };
 
-  // articles will re-render each time limit is amended
+  // articles will re-render each time limit or topic changes
   useEffect(() => {
     loadArticles();
-    setIsLoading(false);
-  }, [limit]);
+  }, [limit, topic]);
 
-  const IncrementButton = () => {
-    if (articleList[0] && limit > articleList[0].total_count)
-      return <h2>No more articles</h2>;
-    return (
-      <button
-        className="increment-button"
-        onClick={() => {
-          incrementLimit(5);
-        }}
-      >
-        Load more Articles
-      </button>
-    );
-  };
-
+  if (isLoading) return <p>Loading...</p>;
   return (
-    <section>
-      <h2>Article List</h2>
+    <section className="article-list">
+      <h2>{topic || `Article List`}</h2>
       <ul>
         {articleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
       </ul>
-      <IncrementButton />
+      <IncrementButton
+        articleList={articleList}
+        setLimit={setLimit}
+        limit={limit}
+      />
     </section>
   );
 }
