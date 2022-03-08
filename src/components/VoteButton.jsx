@@ -18,12 +18,22 @@ export default function VoteButton({ articleId, votes, size }) {
   //disable relevant buttons when vote changed
   const maxUpVotes = votes + 1;
   const maxDownVotes = votes - 1;
-  let disableUpButton = voteTotal >= maxUpVotes ? true : false;
-  let disableDownButton = voteTotal <= maxDownVotes ? true : false;
+  let textColour = "inherit";
+  // let disableUpButton = voteTotal >= maxUpVotes ? true : false;
+  let disableUpButton;
+  let disableDownButton;
+  if (voteTotal >= maxUpVotes) {
+    disableUpButton = true;
+    textColour = "green";
+  }
+  if (voteTotal <= maxDownVotes) {
+    disableDownButton = true;
+    textColour = "red";
+  }
 
   if (error) return <p>{error}</p>;
   return (
-    <div className={`icon ${size}`}>
+    <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
       <button
         className="vote-button"
         onClick={() => {
