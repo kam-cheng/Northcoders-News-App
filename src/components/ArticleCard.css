@@ -1,6 +1,22 @@
+.article-list {
+  padding: 20px;
+  color: #2a2b2a;
+}
+.article-list ul {
+  list-style-type: none;
+}
+
 .article-card {
-  margin: 20px;
-  padding: 10px;
   border-radius: 25px;
-  background-color: rgba(177, 228, 233, 0.404);
+  margin: 10px;
+  padding: 15px;
+  background-color: #bb858847;
+}
+
+.icon {
+  font-size: 0.8em;
+  vertical-align: middle;
+  display: inline;
+  padding: 5px;
+  width: 15px;
 }

@@ -15,12 +15,27 @@ export default function ArticleCard({
   return (
     <li>
       <article className="article-card">
-        <p>topic: {topic}</p>
+        <h3>{title}</h3>
+        <p>{topic}</p>
         <p>author: {author}</p>
         <p>created at: {created_at}</p>
-        <h3>{title}</h3>
-        <p>total comments: {comment_count}</p>
-        <p>votes: {votes}</p>
+        <div className="icon">
+          <img
+            className="icon"
+            src="/images/comment-icon.jpg"
+            alt="comments icon"
+          />
+          {comment_count} Comments
+        </div>
+        <div className="icon">
+          <img src="/images/thumb-up.png" className="icon" alt="up vote icon" />
+          {votes}
+          <img
+            src="/images/thumb-down.png"
+            className="icon"
+            alt="down vote icon"
+          />
+        </div>
       </article>
     </li>
   );

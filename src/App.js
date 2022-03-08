@@ -12,6 +12,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<ArticleList />} />
+          <Route path="/topics/:topic" element={<ArticleList />} />
         </Routes>
       </div>
     </BrowserRouter>
