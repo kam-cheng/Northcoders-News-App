@@ -15,6 +15,10 @@
   padding: 5px;
   width: 15px;
 }
+.vote-button {
+  background-color: transparent;
+  border: none;
+}
 
 .icon.small {
   font-size: 0.8em;

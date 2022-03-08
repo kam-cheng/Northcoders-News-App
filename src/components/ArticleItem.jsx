@@ -3,6 +3,7 @@ import { fetchArticle } from "../utils/api";
 import { useState, useEffect } from "react";
 import "./ArticleItem.css";
 import dayjs from "dayjs";
+import VoteButton from "./VoteButton";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -36,19 +37,11 @@ export default function ArticleItem() {
           />
           {articleItem.comment_count} Comments
         </div>
-        <div className="icon large">
-          <img
-            src="/images/thumb-up.png"
-            className="icon large"
-            alt="up vote icon"
-          />
-          {articleItem.votes}
-          <img
-            src="/images/thumb-down.png"
-            className="icon large"
-            alt="down vote icon"
-          />
-        </div>
+        <VoteButton
+          articleId={articleItem.article_id}
+          votes={articleItem.votes}
+          size={"large"}
+        />
       </article>
     </>
   );

@@ -1,4 +1,5 @@
 import "./ArticleCard.css";
+import VoteButton from "./VoteButton";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
@@ -15,9 +16,9 @@ export default function ArticleCard({
   },
 }) {
   return (
-    <Link to={`/articles/${article_id}`} className="article-link">
-      <li>
-        <article className="article-card">
+    <li>
+      <article className="article-card">
+        <Link to={`/articles/${article_id}`} className="article-link">
           <h3>{title}</h3>
           <p>{topic}</p>
           <p>author: {author}</p>
@@ -30,21 +31,9 @@ export default function ArticleCard({
             />
             {comment_count} Comments
           </div>
-          <div className="icon small">
-            <img
-              src="/images/thumb-up.png"
-              className="icon small"
-              alt="up vote icon"
-            />
-            {votes}
-            <img
-              src="/images/thumb-down.png"
-              className="icon small"
-              alt="down vote icon"
-            />
-          </div>
-        </article>
-      </li>
-    </Link>
+        </Link>
+        <VoteButton articleId={article_id} votes={votes} size={"small"} />
+      </article>
+    </li>
   );
 }
