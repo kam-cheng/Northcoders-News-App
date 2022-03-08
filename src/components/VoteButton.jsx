@@ -11,7 +11,7 @@ export default function VoteButton({ articleId, votes, size }) {
     setVotes((currVotes) => currVotes + increment);
     patchVotes(articleId, increment).catch((err) => {
       setVotes((currVotes) => currVotes - increment);
-      setError("Something went wrong, please try again.");
+      setError("vote increment failed - please reload page and try again");
     });
   };
 
