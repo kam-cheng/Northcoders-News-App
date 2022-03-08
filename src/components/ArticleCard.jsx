@@ -1,5 +1,6 @@
 import "./ArticleCard.css";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 export default function ArticleCard({
   article: {
@@ -20,7 +21,7 @@ export default function ArticleCard({
           <h3>{title}</h3>
           <p>{topic}</p>
           <p>author: {author}</p>
-          <p>created at: {created_at}</p>
+          <p>{dayjs(created_at).toString()}</p>
           <div className="icon small">
             <img
               className="icon small"

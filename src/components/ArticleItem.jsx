@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchArticle } from "../utils/api";
 import { useState, useEffect } from "react";
 import "./ArticleItem.css";
+import dayjs from "dayjs";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -25,7 +26,7 @@ export default function ArticleItem() {
         <h2>{articleItem.title}</h2>
         <h3>{articleItem.author}</h3>
         <h4>Topic : {articleItem.topic}</h4>
-        <h4>Created : {articleItem.created_at}</h4>
+        <h4>{dayjs(articleItem.created_at).toString()}</h4>
         <p>{articleItem.body}</p>
         <div className="icon large">
           <img
