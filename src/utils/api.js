@@ -29,7 +29,14 @@ const patchVotes = async (articleId, increment) => {
   } = await axios.patch(`${apiLink}/articles/${articleId}`, {
     inc_votes: increment,
   });
-  console.log(votes);
+  return votes;
 };
 
-export { fetchArticles, fetchTopics, patchVotes };
+const fetchArticle = async (articleId) => {
+  const {
+    data: { article },
+  } = await axios.get(`${apiLink}/articles/${articleId}`);
+  return article;
+};
+
+export { fetchArticles, fetchTopics, fetchArticle, patchVotes };
