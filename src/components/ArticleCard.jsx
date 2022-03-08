@@ -28,12 +28,20 @@ export default function ArticleCard({
             />
             {comment_count} Comments
           </p>
+          <p>
+            <img
+              src="/images/thumb-up.png"
+              className="icon"
+              alt="up vote icon"
+            />
+            {votes}
+            <img
+              src="/images/thumb-down.png"
+              className="icon"
+              alt="down vote icon"
+            />
+          </p>
         </div>
-        <p>
-          <img src="/images/thumb-up.png" className="icon" />
-          {votes}
-          <img src="/images/thumb-down.png" className="icon" />
-        </p>
       </article>
     </li>
   );
