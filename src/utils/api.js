@@ -3,11 +3,14 @@ import axios from "axios";
 const apiLink = "https://northcoders-news-api.herokuapp.com/api";
 
 const fetchArticles = async (limit, topic) => {
-  let queryString = `?limit=${limit}`;
-  if (topic) queryString += `&topic=${topic}`;
   const {
     data: { articles },
-  } = await axios.get(`${apiLink}/articles${queryString}`);
+  } = await axios.get(`${apiLink}/articles`, {
+    params: {
+      limit,
+      topic,
+    },
+  });
   return articles;
 };
 
@@ -18,4 +21,15 @@ const fetchTopics = async () => {
   return topics;
 };
 
-export { fetchArticles, fetchTopics };
+const patchVotes = async (articleId, increment) => {
+  const {
+    data: {
+      article: { votes },
+    },
+  } = await axios.patch(`${apiLink}/articles/${articleId}`, {
+    inc_votes: increment,
+  });
+  console.log(votes);
+};
+
+export { fetchArticles, fetchTopics, patchVotes };

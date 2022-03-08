@@ -1,4 +1,5 @@
 import "./ArticleCard.css";
+import VoteButton from "./VoteButton";
 
 export default function ArticleCard({
   article: {
@@ -27,7 +28,7 @@ export default function ArticleCard({
           />
           {comment_count} Comments
         </div>
-        <div className="icon">
+        {/* <div className="icon">
           <img src="/images/thumb-up.png" className="icon" alt="up vote icon" />
           {votes}
           <img
@@ -35,7 +36,8 @@ export default function ArticleCard({
             className="icon"
             alt="down vote icon"
           />
-        </div>
+        </div> */}
+        <VoteButton articleId={article_id} votes={votes} />
       </article>
     </li>
   );
