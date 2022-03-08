@@ -3,6 +3,7 @@ import { fetchArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard.jsx";
 import IncrementButton from "./IncrementButton";
 import { useParams } from "react-router-dom";
+import "./ArticleList.css";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -25,7 +26,7 @@ export default function ArticleList() {
   if (isLoading) return <p>Loading...</p>;
   return (
     <section className="article-list">
-      <h2>{topic || `Article List`}</h2>
+      <h2 className="title">{topic || `Article List`}</h2>
       <ul>
         {articleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;

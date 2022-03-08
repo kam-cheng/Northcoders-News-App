@@ -20,27 +20,21 @@ export default function ArticleCard({
         <p>author: {author}</p>
         <p>created at: {created_at}</p>
         <div className="icon">
-          <p>
-            <img
-              className="icon"
-              src="/images/comment-icon.jpg"
-              alt="comments icon"
-            />
-            {comment_count} Comments
-          </p>
-          <p>
-            <img
-              src="/images/thumb-up.png"
-              className="icon"
-              alt="up vote icon"
-            />
-            {votes}
-            <img
-              src="/images/thumb-down.png"
-              className="icon"
-              alt="down vote icon"
-            />
-          </p>
+          <img
+            className="icon"
+            src="/images/comment-icon.jpg"
+            alt="comments icon"
+          />
+          {comment_count} Comments
+        </div>
+        <div className="icon">
+          <img src="/images/thumb-up.png" className="icon" alt="up vote icon" />
+          {votes}
+          <img
+            src="/images/thumb-down.png"
+            className="icon"
+            alt="down vote icon"
+          />
         </div>
       </article>
     </li>
