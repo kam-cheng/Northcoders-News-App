@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { patchVotes } from "../utils/api";
 
-export default function VoteButton({ articleId, votes, size }) {
+export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
   const [error, setError] = useState(null);
 
@@ -9,7 +9,7 @@ export default function VoteButton({ articleId, votes, size }) {
   const incrementVote = (increment) => {
     setError(null);
     setVotes((currVotes) => currVotes + increment);
-    patchVotes(articleId, increment).catch((err) => {
+    patchVotes({ articleId, commentId, increment }).catch((err) => {
       setVotes((currVotes) => currVotes - increment);
       setError("vote increment failed - please reload page and try again");
     });

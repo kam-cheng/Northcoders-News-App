@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import "./ArticleItem.css";
 import dayjs from "dayjs";
 import VoteButton from "./VoteButton";
+import CommentList from "./CommentList";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -43,6 +44,7 @@ export default function ArticleItem() {
           size={"large"}
         />
       </article>
+      <CommentList articleId={articleItem.article_id} />
     </>
   );
 }
