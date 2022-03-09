@@ -33,9 +33,10 @@ export default function ArticleList() {
         })}
       </ul>
       <IncrementButton
-        articleList={articleList}
+        list={articleList}
         setLimit={setLimit}
         limit={limit}
+        name={`Articles`}
       />
     </section>
   );

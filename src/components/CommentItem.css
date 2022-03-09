@@ -1,0 +1,17 @@
+.comment-list {
+  list-style: none;
+}
+
+.comment-item {
+  margin: 10px;
+  background-color: #bb858823;
+  border-radius: 20px;
+}
+
+.comment-item > * {
+  padding: 5px;
+}
+
+.comment-item p {
+  text-align: justify;
+}

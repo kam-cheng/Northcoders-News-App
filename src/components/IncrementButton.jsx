@@ -1,14 +1,13 @@
 import "./IncrementButton.css";
 
-export default function IncrementButton({ limit, articleList, setLimit }) {
+export default function IncrementButton({ limit, list, setLimit, name }) {
   const incrementLimit = async (increment) => {
     setLimit((currLimit) => {
       return currLimit + increment;
     });
   };
 
-  if (articleList[0] && limit > articleList[0].total_count)
-    return <h2>No more articles</h2>;
+  if (limit > list.length) return <></>;
   return (
     <button
       className="increment-button"
@@ -16,7 +15,7 @@ export default function IncrementButton({ limit, articleList, setLimit }) {
         incrementLimit(5);
       }}
     >
-      Load more Articles
+      Load more {name}
     </button>
   );
 }

@@ -21,15 +21,26 @@ const fetchTopics = async () => {
   return topics;
 };
 
-const patchVotes = async (articleId, increment) => {
-  const {
-    data: {
-      article: { votes },
-    },
-  } = await axios.patch(`${apiLink}/articles/${articleId}`, {
-    inc_votes: increment,
-  });
-  return votes;
+const patchVotes = async ({ articleId, commentId, increment }) => {
+  if (articleId) {
+    const {
+      data: {
+        article: { votes },
+      },
+    } = await axios.patch(`${apiLink}/articles/${articleId}`, {
+      inc_votes: increment,
+    });
+    return votes;
+  } else {
+    const {
+      data: {
+        comment: { votes },
+      },
+    } = await axios.patch(`${apiLink}/comments/${commentId}`, {
+      inc_votes: increment,
+    });
+    return votes;
+  }
 };
 
 const fetchArticle = async (articleId) => {
@@ -39,4 +50,15 @@ const fetchArticle = async (articleId) => {
   return article;
 };
 
-export { fetchArticles, fetchTopics, fetchArticle, patchVotes };
+const fetchComments = async (limit, articleId) => {
+  const {
+    data: { comments },
+  } = await axios.get(`${apiLink}/articles/${articleId}/comments`, {
+    params: {
+      limit,
+    },
+  });
+  return comments;
+};
+
+export { fetchArticles, fetchTopics, fetchArticle, patchVotes, fetchComments };
