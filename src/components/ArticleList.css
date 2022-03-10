@@ -14,3 +14,7 @@
   display: inline-block;
   margin: 2px;
 }
+
+.loading-bar {
+  padding: 10px;
+}

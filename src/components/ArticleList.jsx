@@ -23,6 +23,7 @@ export default function ArticleList() {
 
   //increase number of articles shown when button clicked
   const loadArticles = async () => {
+    setIsLoading(true);
     const articles = await fetchArticles(
       limit,
       topic,
@@ -37,26 +38,29 @@ export default function ArticleList() {
   useEffect(() => {
     loadArticles();
   }, [limit, topic, sortBy, order]);
-
-  if (isLoading) return <p>Loading...</p>;
+  let loading = "";
+  if (isLoading) loading = <p className="loading-bar">Loading...</p>;
   return (
-    <section className="article-list">
-      <div className="selectors">
-        <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
-        <Order order={order} setOrder={setOrder} />
-      </div>
-      <h2 className="title">{topic || `Article List`}</h2>
-      <ul>
-        {articleList.map((article) => {
-          return <ArticleCard article={article} key={article.article_id} />;
-        })}
-      </ul>
-      <IncrementButton
-        list={articleList}
-        setLimit={setLimit}
-        limit={limit}
-        name={`Articles`}
-      />
-    </section>
+    <>
+      {loading}
+      <section className="article-list">
+        <div className="selectors">
+          <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
+          <Order order={order} setOrder={setOrder} />
+        </div>
+        <h2 className="title">{topic || `Article List`}</h2>
+        <ul>
+          {articleList.map((article) => {
+            return <ArticleCard article={article} key={article.article_id} />;
+          })}
+        </ul>
+        <IncrementButton
+          list={articleList}
+          setLimit={setLimit}
+          limit={limit}
+          name={`Articles`}
+        />
+      </section>
+    </>
   );
 }
