@@ -2,13 +2,15 @@ import axios from "axios";
 
 const apiLink = "https://northcoders-news-api.herokuapp.com/api";
 
-const fetchArticles = async (limit, topic) => {
+const fetchArticles = async (limit, topic, sortBy, order) => {
   const {
     data: { articles },
   } = await axios.get(`${apiLink}/articles`, {
     params: {
       limit,
       topic,
+      sort_by: sortBy,
+      order,
     },
   });
   return articles;

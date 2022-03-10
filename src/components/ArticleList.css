@@ -8,3 +8,13 @@
 .article-list ul {
   list-style-type: none;
 }
+
+.selectors * {
+  font-size: 0.9rem;
+  display: inline-block;
+  margin: 2px;
+}
+
+.loading-bar {
+  padding: 10px;
+}
