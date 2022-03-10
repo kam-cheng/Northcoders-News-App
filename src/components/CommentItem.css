@@ -20,7 +20,26 @@
   text-align: justify;
 }
 
-.error-message {
-  padding: 10px;
-  color: red;
+@media only screen and (min-width: 600px) {
+  .comment-list {
+    font-size: 1.2em;
+  }
+
+  .comment-list > h3 {
+    font-size: 2em;
+  }
+
+  .comment-list ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .comment-item {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  .comment-item > * {
+    padding: 10px;
+  }
 }

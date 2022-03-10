@@ -25,3 +25,19 @@
   font-size: 0.8em;
   width: 15px;
 }
+
+@media only screen and (min-width: 600px) {
+  .article-card {
+    width: 400px;
+    height: 200px;
+  }
+
+  .article-card * {
+    padding: 5px;
+  }
+
+  .icon.small {
+    font-size: 1em;
+    width: 20px;
+  }
+}
