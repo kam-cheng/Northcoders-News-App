@@ -9,23 +9,29 @@ export default function PostComment({ articleId }) {
   const [newComment, setNewComment] = useState("");
   const [postedComment, setPostedComment] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { user } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setError(null);
     setIsLoading(true);
-    const comment = await addComment({
-      articleId,
-      username: user,
-      body: newComment,
-    });
-    setNewComment("");
-    setPostedComment(comment);
-    setIsLoading(false);
+    try {
+      const comment = await addComment({
+        articleId,
+        username: user,
+        body: newComment,
+      });
+      setNewComment("");
+      setPostedComment(comment);
+      setIsLoading(false);
+    } catch (err) {
+      setError("attempt to post failed - please reload page and try again");
+    }
   };
 
+  //return posted comment to top of page
   let displayComment = null;
-
   if (postedComment)
     displayComment = (
       <ul className="new-comment">
@@ -33,6 +39,7 @@ export default function PostComment({ articleId }) {
       </ul>
     );
 
+  if (error) return <p>{error}</p>;
   if (isLoading) return <p>Submitting Message...</p>;
   return (
     <>
