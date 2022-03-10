@@ -19,6 +19,7 @@ export default function CommentItem({
       <DeleteComment
         commentId={comment_id}
         setDeletedComment={setDeletedComment}
+        author={author}
       />
     </li>
   );

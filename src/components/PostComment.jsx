@@ -10,7 +10,9 @@ export default function PostComment({ articleId }) {
   const [postedComment, setPostedComment] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { user } = useContext(UserContext);
+  const {
+    user: { username },
+  } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +21,7 @@ export default function PostComment({ articleId }) {
     try {
       const comment = await addComment({
         articleId,
-        username: user,
+        username: username,
         body: newComment,
       });
       setNewComment("");
