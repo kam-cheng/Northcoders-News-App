@@ -8,3 +8,8 @@
 .article-list ul {
   list-style-type: none;
 }
+
+.selectors * {
+  display: inline;
+  margin: 5px;
+}

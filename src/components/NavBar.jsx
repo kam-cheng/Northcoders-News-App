@@ -17,32 +17,40 @@ export default function NavBar() {
     getTopics();
   }, []);
 
+  //toggle dropdown
+  function toggleDropdown() {
+    document.getElementById("navbar-myDropdown").classList.toggle("show");
+  }
+
   return (
-    <nav className="navbar">
-      <ul>
-        <li>
-          <Link to="/" className="link">
-            Home
-          </Link>
-        </li>
-        <li className="dropdown">
-          <button className="dropbtn">
-            Topics
-            <i className="fa fa-caret-down"></i>
-          </button>
-          <ul className="dropdown-content" id="myDropdown">
-            {topics.map(({ slug }) => {
-              return (
-                <li key={slug}>
-                  <Link to={`topics/${slug}`} className="link">
-                    {slug}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    <div className="navbar">
+      <Link to="/" className="navbar-link">
+        Home
+      </Link>
+      <div className="navbar-dropdown">
+        <button
+          className="navbar-dropbtn"
+          onClick={() => {
+            toggleDropdown();
+          }}
+        >
+          Topics
+          <i className="fa fa-caret-down"></i>
+        </button>
+        <div id="navbar-myDropdown" className="navbar-dropdown-content">
+          {topics.map(({ slug }) => {
+            return (
+              <Link
+                to={`topics/${slug}`}
+                className="navbar-dropdown-link"
+                key={slug}
+              >
+                {slug}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
