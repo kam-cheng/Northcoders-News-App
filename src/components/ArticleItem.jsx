@@ -5,6 +5,7 @@ import "./ArticleItem.css";
 import dayjs from "dayjs";
 import VoteButton from "./VoteButton";
 import CommentList from "./CommentList";
+import PostComment from "./PostComment";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -44,6 +45,7 @@ export default function ArticleItem() {
           size={"large"}
         />
       </article>
+      <PostComment articleId={articleItem.article_id} />
       <CommentList articleId={articleItem.article_id} />
     </>
   );

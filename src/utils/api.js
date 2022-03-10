@@ -63,4 +63,21 @@ const fetchComments = async (limit, articleId) => {
   return comments;
 };
 
-export { fetchArticles, fetchTopics, fetchArticle, patchVotes, fetchComments };
+const addComment = async ({ body, username, articleId }) => {
+  const {
+    data: { comment },
+  } = await axios.post(`${apiLink}/articles/${articleId}/comments`, {
+    username,
+    body,
+  });
+  return comment;
+};
+
+export {
+  fetchArticles,
+  fetchTopics,
+  fetchArticle,
+  patchVotes,
+  fetchComments,
+  addComment,
+};
