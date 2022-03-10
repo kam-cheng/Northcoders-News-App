@@ -66,6 +66,10 @@ export default function NavBar() {
           id="navbar-myDropdown"
           className="navbar-dropdown-content"
           ref={node}
+          onClick={() => {
+            setOpen(!open);
+            toggleDropdown();
+          }}
         >
           {topics.map(({ slug }) => {
             return (

@@ -1,6 +1,13 @@
+.sort-by-container {
+  float: left;
+}
+
+.order-container {
+  float: right;
+}
+
 /* Dropdown Button */
 .dropdown-button {
-  padding: 5px;
   font-size: 1rem;
   border: none;
   cursor: pointer;
