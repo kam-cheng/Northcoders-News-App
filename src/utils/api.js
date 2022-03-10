@@ -73,6 +73,10 @@ const addComment = async ({ body, username, articleId }) => {
   return comment;
 };
 
+const deleteComment = async (commentId) => {
+  await axios.delete(`${apiLink}/comments/${commentId}`);
+};
+
 export {
   fetchArticles,
   fetchTopics,
@@ -80,4 +84,5 @@ export {
   patchVotes,
   fetchComments,
   addComment,
+  deleteComment,
 };
