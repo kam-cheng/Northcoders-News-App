@@ -10,6 +10,7 @@
 }
 
 .selectors * {
-  display: inline;
-  margin: 5px;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin: 2px;
 }
