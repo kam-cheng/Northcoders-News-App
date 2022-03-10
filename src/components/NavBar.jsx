@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchTopics } from "../utils/api";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 export default function NavBar() {
+  const node = useRef();
+  const [open, setOpen] = useState(false);
   const [topics, setTopics] = useState([]);
 
   //fetch topics list
@@ -17,10 +19,32 @@ export default function NavBar() {
     getTopics();
   }, []);
 
-  //toggle dropdown
+  //toggle dropdown when clicked outside
   function toggleDropdown() {
     document.getElementById("navbar-myDropdown").classList.toggle("show");
   }
+
+  const handleClickOutside = (e) => {
+    if (node.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    toggleDropdown();
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   return (
     <div className="navbar">
@@ -31,13 +55,18 @@ export default function NavBar() {
         <button
           className="navbar-dropbtn"
           onClick={() => {
+            setOpen(!open);
             toggleDropdown();
           }}
         >
           Topics
           <i className="fa fa-caret-down"></i>
         </button>
-        <div id="navbar-myDropdown" className="navbar-dropdown-content">
+        <div
+          id="navbar-myDropdown"
+          className="navbar-dropdown-content"
+          ref={node}
+        >
           {topics.map(({ slug }) => {
             return (
               <Link
