@@ -38,7 +38,8 @@ export default function ArticleList() {
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-      const customMessage = "loading failed - please reload page and try again";
+      const customMessage =
+        "loading articles failed - please reload page and try again";
       setError(handleErrorMessage(err, customMessage));
     }
   };

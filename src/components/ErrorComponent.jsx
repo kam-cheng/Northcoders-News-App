@@ -6,6 +6,6 @@ export default function ErrorComponent({ error: { status, message } }) {
       </p>
     );
   } else {
-    return null;
+    return <></>;
   }
 }
