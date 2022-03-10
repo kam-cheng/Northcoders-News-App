@@ -24,7 +24,6 @@ const fetchTopics = async () => {
 };
 
 const patchVotes = async ({ articleId, commentId, increment }) => {
-  increment = "bad";
   if (articleId) {
     const {
       data: {

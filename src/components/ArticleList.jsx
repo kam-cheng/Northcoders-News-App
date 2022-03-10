@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import "./ArticleList.css";
 import SortedBy from "./SortedBy";
 import Order from "./Order";
+import handleErrorMessage from "../utils/handle-error-message";
+import ErrorComponent from "./ErrorComponent";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -20,18 +22,24 @@ export default function ArticleList() {
     name: "descending",
     apiValue: "desc",
   });
+  const [error, setError] = useState(null);
 
   //increase number of articles shown when button clicked
   const loadArticles = async () => {
-    setIsLoading(true);
-    const articles = await fetchArticles(
-      limit,
-      topic,
-      sortBy.apiValue,
-      order.apiValue
-    );
-    setArticleList(articles);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const articles = await fetchArticles(
+        limit,
+        topic,
+        sortBy.apiValue,
+        order.apiValue
+      );
+      setArticleList(articles);
+      setIsLoading(false);
+    } catch (err) {
+      const customMessage = "loading failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
+    }
   };
 
   // articles will re-render each time limit or topic changes
@@ -40,6 +48,9 @@ export default function ArticleList() {
   }, [limit, topic, sortBy, order]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+
+  if (error) return <ErrorComponent error={error} />;
+
   return (
     <>
       <section className="article-list">

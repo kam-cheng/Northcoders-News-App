@@ -12,6 +12,7 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
     setVotes((currVotes) => currVotes + increment);
     patchVotes({ articleId, commentId, increment }).catch((err) => {
       setVotes((currVotes) => currVotes - increment);
+      //custom message for client-side errors
       const customMessage =
         "vote increment failed - please reload page and try again";
       setError(handleErrorMessage(err, customMessage));
