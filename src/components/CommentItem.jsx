@@ -25,7 +25,7 @@ export default function CommentItem({
       <h4>{author}</h4>
       <h5>{dayjs(created_at).toString()}</h5>
       <p>{body}</p>
-      <VoteButton commentId={comment_id} votes={votes} size={"small"} />
+      <VoteButton commentId={comment_id} votes={votes} size={"large"} />
       <DeleteComment
         commentId={comment_id}
         setDeletedComment={setDeletedComment}

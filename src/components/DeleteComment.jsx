@@ -33,7 +33,7 @@ export default function DeleteComment({
     >
       <img
         src="/images/delete-icon.png"
-        className="icon small"
+        className="icon large"
         alt="delete comment button"
       />
     </button>
