@@ -1,29 +1,20 @@
 import { useState } from "react";
 import { patchVotes } from "../utils/api";
 import ErrorComponent from "./ErrorComponent";
+import handleErrorMessage from "../utils/handle-error-message";
 
 export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
   const [error, setError] = useState(null);
 
-  //functiont to incremement vote when button clicked
+  //function to incremement vote when button clicked
   const incrementVote = (increment) => {
-    setError(null);
     setVotes((currVotes) => currVotes + increment);
     patchVotes({ articleId, commentId, increment }).catch((err) => {
       setVotes((currVotes) => currVotes - increment);
-      if (err.response)
-        setError({
-          status: err.response.status,
-          message: err.response.data.msg,
-        });
-      else
-        setError({
-          status: null,
-          message: "vote increment failed - please reload page and try again",
-        });
-
-      // setError("vote increment failed - please reload page and try again");
+      const customMessage =
+        "vote increment failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
     });
   };
 
