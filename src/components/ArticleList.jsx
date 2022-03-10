@@ -37,6 +37,7 @@ export default function ArticleList() {
       setArticleList(articles);
       setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       const customMessage = "loading failed - please reload page and try again";
       setError(handleErrorMessage(err, customMessage));
     }
@@ -48,9 +49,7 @@ export default function ArticleList() {
   }, [limit, topic, sortBy, order]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
-
   if (error) return <ErrorComponent error={error} />;
-
   return (
     <>
       <section className="article-list">
