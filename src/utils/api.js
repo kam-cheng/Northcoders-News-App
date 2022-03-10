@@ -77,6 +77,18 @@ const deleteComment = async (commentId) => {
   await axios.delete(`${apiLink}/comments/${commentId}`);
 };
 
+const addArticle = async ({ username, title, body, topic }) => {
+  const {
+    data: { article },
+  } = await axios.post(`${apiLink}/articles`, {
+    author: username,
+    title,
+    body,
+    topic,
+  });
+  return article;
+};
+
 export {
   fetchArticles,
   fetchTopics,
@@ -85,4 +97,5 @@ export {
   fetchComments,
   addComment,
   deleteComment,
+  addArticle,
 };

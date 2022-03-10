@@ -6,6 +6,7 @@ import ArticleItem from "./components/ArticleItem";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { UserContext } from "./contexts/User";
+import PostArticle from "./components/PostArticle";
 
 function App() {
   const [user, setUser] = useState({
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" element={<ArticleList />} />
             <Route path="/topics/:topic" element={<ArticleList />} />
             <Route path="/articles/:article_id" element={<ArticleItem />} />
+            <Route path="/articles/submit" element={<PostArticle />} />
           </Routes>
         </div>
       </UserContext.Provider>

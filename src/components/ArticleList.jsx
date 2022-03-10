@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import "./ArticleList.css";
 import SortedBy from "./SortedBy";
 import Order from "./Order";
+import { Link } from "react-router-dom";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -43,6 +44,9 @@ export default function ArticleList() {
   return (
     <>
       <section className="article-list">
+        <Link to="articles/submit">
+          <button className="create-article-button">Create Article</button>
+        </Link>
         <div className="selectors">
           <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
           <Order order={order} setOrder={setOrder} />

@@ -1,0 +1,13 @@
+.article-input {
+  width: 65vw;
+  margin: 10px;
+  padding: 10px;
+}
+
+.article-text-box {
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  height: 50vw;
+  width: 70vw;
+}
