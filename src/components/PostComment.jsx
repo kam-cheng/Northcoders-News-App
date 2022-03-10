@@ -44,7 +44,12 @@ export default function PostComment({ articleId }) {
       </ul>
     );
 
-  if (error) return <ErrorComponent error={error} />;
+  if (error)
+    return (
+      <h3 className="error-message">
+        <ErrorComponent error={error} />
+      </h3>
+    );
   if (isLoading) return <p>Submitting Message...</p>;
   return (
     <>

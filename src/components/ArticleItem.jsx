@@ -33,7 +33,12 @@ export default function ArticleItem() {
   }, [articleId]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <ErrorComponent error={error} />;
+  if (error)
+    return (
+      <h1 className="error-message">
+        <ErrorComponent error={error} />
+      </h1>
+    );
   return (
     <>
       <article className="article-item">

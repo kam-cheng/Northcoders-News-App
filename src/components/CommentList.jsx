@@ -30,7 +30,12 @@ export default function CommentList({ articleId }) {
   }, [articleId, limit]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
-  if (error) return <ErrorComponent error={error} />;
+  if (error)
+    return (
+      <h2 className="error-message">
+        <ErrorComponent error={error} />
+      </h2>
+    );
   return (
     <section className="comment-list">
       <h3>Comments</h3>

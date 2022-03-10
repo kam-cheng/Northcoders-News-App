@@ -15,7 +15,9 @@ export default function CommentItem({
   // if (error) return <ErrorComponent error={error} />;
   return (
     <li className="comment-item">
-      <ErrorComponent error={error} />
+      <p className="error-message">
+        <ErrorComponent error={error} />
+      </p>
       <h4>{author}</h4>
       <h5>{dayjs(created_at).toString()}</h5>
       <p>{body}</p>

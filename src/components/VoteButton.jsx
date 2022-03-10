@@ -35,7 +35,12 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
     textColour = "red";
   }
 
-  if (error) return <ErrorComponent error={error} />;
+  if (error)
+    return (
+      <h3 className="error-message">
+        <ErrorComponent error={error} />
+      </h3>
+    );
   return (
     <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
       <button

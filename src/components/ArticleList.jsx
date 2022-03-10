@@ -50,7 +50,12 @@ export default function ArticleList() {
   }, [limit, topic, sortBy, order]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
-  if (error) return <ErrorComponent error={error} />;
+  if (error)
+    return (
+      <h1 className="error-message">
+        <ErrorComponent error={error} />
+      </h1>
+    );
   return (
     <>
       <section className="article-list">
