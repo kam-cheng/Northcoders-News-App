@@ -45,7 +45,7 @@ export default function ArticleList() {
     <>
       <section className="article-list">
         <Link to="articles/submit">
-          <button className="create-article-button">Create Article</button>
+          <button className="create-article-button">Post New Article</button>
         </Link>
         <div className="selectors">
           <SortedBy sortBy={sortBy} setSortBy={setSortBy} />

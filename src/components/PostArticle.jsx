@@ -25,22 +25,23 @@ export default function PostArticle() {
   if (isLoading) return <p>Submitting Article...</p>;
   return (
     <>
-      <form onSubmit={handleSubmit} className="post-form">
-        <input
-          placeholder="Title"
-          className="article-input"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          required
-        />
-        <input
-          placeholder="Topic"
-          className="article-input"
-          value={topic}
-          onChange={(event) => setTopic(event.target.value)}
-          required
-        />
+      <form onSubmit={handleSubmit} className="article-form">
         <label>
+          <h2>Post New Article</h2>
+          <input
+            placeholder="Title"
+            className="article-input"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            required
+          />
+          <input
+            placeholder="Topic"
+            className="article-input"
+            value={topic}
+            onChange={(event) => setTopic(event.target.value)}
+            required
+          />
           <textarea
             className="article-text-box"
             placeholder="Text"
@@ -48,7 +49,7 @@ export default function PostArticle() {
             onChange={(event) => setBody(event.target.value)}
             required
           />
-          <button className="increment-button" type="submit">
+          <button className="increment-button article" type="submit">
             Post Article
           </button>
         </label>
