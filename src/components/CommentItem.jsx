@@ -8,10 +8,20 @@ export default function CommentItem({
   comment: { comment_id, votes, created_at, author, body },
 }) {
   const [deletedComment, setDeletedComment] = useState(false);
+  const [error, setError] = useState(false);
 
-  if (deletedComment) return <li>Comment Deleted!</li>;
+  let errorMessage = <></>;
+  if (error)
+    errorMessage = (
+      <p className="error-message">
+        Unable to delete message. Refresh and try again
+      </p>
+    );
+
+  if (deletedComment) return [deletedComment];
   return (
     <li className="comment-item">
+      {errorMessage}
       <h4>{author}</h4>
       <h5>{dayjs(created_at).toString()}</h5>
       <p>{body}</p>
@@ -19,6 +29,7 @@ export default function CommentItem({
       <DeleteComment
         commentId={comment_id}
         setDeletedComment={setDeletedComment}
+        setError={setError}
         author={author}
       />
     </li>

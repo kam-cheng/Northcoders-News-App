@@ -1,19 +1,26 @@
 import { deleteComment } from "../utils/api";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
 
 export default function DeleteComment({
   commentId,
   setDeletedComment,
   author,
+  setError,
 }) {
   const {
     user: { username },
   } = useContext(UserContext);
 
   const removeComment = async () => {
-    await deleteComment(commentId);
-    setDeletedComment(true);
+    try {
+      setDeletedComment(<li>Deleting Comment...</li>);
+      await deleteComment(commentId);
+      setDeletedComment(<li>Comment Deleted!</li>);
+    } catch (err) {
+      setDeletedComment(false);
+      setError(true);
+    }
   };
 
   if (author !== username) return <></>;
