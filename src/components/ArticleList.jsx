@@ -42,13 +42,13 @@ export default function ArticleList() {
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
   return (
     <>
-      {loading}
       <section className="article-list">
         <div className="selectors">
           <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
           <Order order={order} setOrder={setOrder} />
         </div>
         <h2 className="title">{topic || `Article List`}</h2>
+        {loading}
         <ul>
           {articleList.map((article) => {
             return <ArticleCard article={article} key={article.article_id} />;

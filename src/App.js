@@ -8,7 +8,12 @@ import { useState } from "react";
 import { UserContext } from "./contexts/User";
 
 function App() {
-  const [user, setUser] = useState("cooljmessy");
+  const [user, setUser] = useState({
+    username: "cooljmessy",
+    name: "Peter Messy",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002",
+  });
 
   return (
     <BrowserRouter>

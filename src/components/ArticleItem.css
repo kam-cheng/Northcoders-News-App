@@ -13,5 +13,10 @@
 
 .icon.large {
   font-size: 1em;
-  width: 25px;
+  width: 30px;
+}
+
+.button-delete {
+  background-color: transparent;
+  border: none;
 }

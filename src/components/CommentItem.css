@@ -19,3 +19,8 @@
 .comment-item p {
   text-align: justify;
 }
+
+.error-message {
+  padding: 10px;
+  color: red;
+}
