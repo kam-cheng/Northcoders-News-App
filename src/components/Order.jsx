@@ -1,4 +1,5 @@
 import DropDown from "./DropDown";
+import { Link } from "react-router-dom";
 
 export default function Order({ order, setOrder }) {
   const orderArray = [
@@ -13,8 +14,8 @@ export default function Order({ order, setOrder }) {
         <DropDown list={order} name={"order"}>
           {orderArray.map((element) => {
             return (
-              <p
-                to={element.name}
+              <Link
+                to={`?order:${element.name}`}
                 key={element.name}
                 className="dropdown-link"
                 onClick={() => {
@@ -22,7 +23,7 @@ export default function Order({ order, setOrder }) {
                 }}
               >
                 {element.name}
-              </p>
+              </Link>
             );
           })}
         </DropDown>
