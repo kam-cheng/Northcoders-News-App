@@ -17,9 +17,9 @@ export default function CommentList({ articleId }) {
   }, [articleId, limit]);
 
   return (
-    <section>
+    <section className="comment-list">
       <h3>Comments</h3>
-      <ul className="comment-list">
+      <ul>
         {commentList.map((comment) => {
           return <CommentItem comment={comment} key={comment.comment_id} />;
         })}
