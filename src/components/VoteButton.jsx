@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchVotes } from "../utils/api";
+import ErrorComponent from "./ErrorComponent";
 
 export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
@@ -11,7 +12,18 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
     setVotes((currVotes) => currVotes + increment);
     patchVotes({ articleId, commentId, increment }).catch((err) => {
       setVotes((currVotes) => currVotes - increment);
-      setError("vote increment failed - please reload page and try again");
+      if (err.response)
+        setError({
+          status: err.response.status,
+          message: err.response.data.msg,
+        });
+      else
+        setError({
+          status: null,
+          message: "vote increment failed - please reload page and try again",
+        });
+
+      // setError("vote increment failed - please reload page and try again");
     });
   };
 
@@ -31,7 +43,7 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
     textColour = "red";
   }
 
-  if (error) return <p className="error-message">{error}</p>;
+  if (error) return <ErrorComponent error={error} />;
   return (
     <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
       <button
