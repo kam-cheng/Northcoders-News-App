@@ -25,6 +25,9 @@ The NC News App offers users the following features and functionality:
   - votes
   - order (ascending or descending)
 - The list of articles displayed is initially limited to 10 - this can be increased by selecting the 'Load More Articles' button at the bottom of the page.
+- Users can post articles by selecting the Post Article link in the nav bar.
+  - Posted article topic will need to match existing topics.
+  - Once an article has been successfully posted, the user will be redirected to the Article page.
 
 ### Comments
 
