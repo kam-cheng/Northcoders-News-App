@@ -82,6 +82,8 @@ const deleteArticle = async (articleId) => {
 };
 
 const addArticle = async ({ username, title, body, topic }) => {
+  //convert to lowercase so that topic can fit api parameters
+  topic = topic.toLowerCase();
   const {
     data: { article },
   } = await axios.post(`${apiLink}/articles`, {
