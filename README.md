@@ -28,6 +28,7 @@ The NC News App offers users the following features and functionality:
 - Users can post articles by selecting the Post Article link in the nav bar.
   - Posted article topic will need to match existing topics.
   - Once an article has been successfully posted, the user will be redirected to the Article page.
+- Users are able to delete articles associated with their own username (a bin icon will be displayed)
 
 ### Comments
 

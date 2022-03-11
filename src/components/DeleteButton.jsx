@@ -1,27 +1,29 @@
-import { deleteComment } from "../utils/api";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import handleErrorMessage from "../utils/handle-error-message";
+import "./DeleteButton.css";
 
-export default function DeleteComment({
-  commentId,
-  setDeletedComment,
+export default function DeleteArticle({
+  itemId,
+  setDeletedItem,
   author,
   setError,
+  deleteApiFunction,
+  name,
+  size,
 }) {
   const {
     user: { username },
   } = useContext(UserContext);
 
-  const removeComment = async () => {
+  const removeItem = async () => {
     try {
-      setDeletedComment(<li>Deleting Comment...</li>);
-      await deleteComment(commentId);
-      setDeletedComment(<li>Comment Deleted!</li>);
+      setDeletedItem(<p>Deleting {name}...</p>);
+      await deleteApiFunction(itemId);
+      setDeletedItem(<p>{name} Deleted!</p>);
     } catch (err) {
-      setDeletedComment(false);
-      const customMessage =
-        "attempt to delete message failed - please reload page and try again";
+      setDeletedItem(false);
+      const customMessage = `attempt to delete ${name} failed - please reload page and try again`;
       setError(handleErrorMessage(err, customMessage));
     }
   };
@@ -30,14 +32,14 @@ export default function DeleteComment({
   return (
     <button
       onClick={() => {
-        removeComment();
+        removeItem();
       }}
       className="button-delete"
     >
       <img
         src="/images/delete-icon.png"
-        className="icon large"
-        alt="delete comment button"
+        className={`icon ${size}`}
+        alt={`delete ${name} button`}
       />
     </button>
   );
