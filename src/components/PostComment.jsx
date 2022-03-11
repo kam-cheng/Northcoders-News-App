@@ -52,7 +52,7 @@ export default function PostComment({ articleId }) {
     );
   if (isLoading) return <p>Submitting Message...</p>;
   return (
-    <>
+    <section className="post-comment">
       <form onSubmit={handleSubmit} className="post-form">
         <label>
           <textarea
@@ -68,6 +68,6 @@ export default function PostComment({ articleId }) {
         </label>
       </form>
       {displayComment}
-    </>
+    </section>
   );
 }

@@ -1,5 +1,5 @@
 .article-form {
-  height: 100vh;
+  height: auto;
 }
 .article-form * {
   display: block;

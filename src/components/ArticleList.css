@@ -26,6 +26,7 @@
   .article-list ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .selectors * {

@@ -33,11 +33,12 @@
   .comment-list ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .comment-item {
-    width: 400px;
-    margin: 20px auto;
+    width: 350px;
+    margin: 20px;
     padding: 20px;
   }
   .comment-item > * {

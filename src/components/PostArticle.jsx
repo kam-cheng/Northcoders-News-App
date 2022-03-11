@@ -40,35 +40,37 @@ export default function PostArticle() {
   if (isLoading) return <p>Submitting Article...</p>;
   return (
     <>
-      <form onSubmit={handleSubmit} className="article-form">
-        <label>
-          <h2>Post New Article</h2>
-          <input
-            placeholder="Title"
-            className="article-input"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            required
-          />
-          <input
-            placeholder="Topic"
-            className="article-input"
-            value={topic}
-            onChange={(event) => setTopic(event.target.value)}
-            required
-          />
-          <textarea
-            className="article-text-box"
-            placeholder="Text"
-            value={body}
-            onChange={(event) => setBody(event.target.value)}
-            required
-          />
-          <button className="increment-button article" type="submit">
-            Post Article
-          </button>
-        </label>
-      </form>
+      <section className="article-form">
+        <form onSubmit={handleSubmit} className="article-form">
+          <label>
+            <h2>Post New Article</h2>
+            <input
+              placeholder="Title"
+              className="article-input"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              required
+            />
+            <input
+              placeholder="Topic"
+              className="article-input"
+              value={topic}
+              onChange={(event) => setTopic(event.target.value)}
+              required
+            />
+            <textarea
+              className="article-text-box"
+              placeholder="Text"
+              value={body}
+              onChange={(event) => setBody(event.target.value)}
+              required
+            />
+            <button className="increment-button article" type="submit">
+              Post Article
+            </button>
+          </label>
+        </form>
+      </section>
     </>
   );
 }

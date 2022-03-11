@@ -8,6 +8,7 @@ import { useState } from "react";
 import { UserContext } from "./contexts/User";
 import PostArticle from "./components/PostArticle";
 import ErrorPage from "./components/ErrorPage";
+import Footer from "./components/Footer";
 
 function App() {
   const [user, setUser] = useState({
@@ -30,6 +31,7 @@ function App() {
             <Route path="/articles/submit" element={<PostArticle />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
+          <Footer />
         </div>
       </UserContext.Provider>
     </BrowserRouter>
