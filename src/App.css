@@ -24,3 +24,13 @@ header img {
   float: right;
   width: 50px;
 }
+
+@media only screen and (min-width: 600px) {
+  .header-text {
+    font-size: 4em;
+  }
+
+  header img {
+    width: 100px;
+  }
+}

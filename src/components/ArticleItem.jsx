@@ -6,16 +6,26 @@ import dayjs from "dayjs";
 import VoteButton from "./VoteButton";
 import CommentList from "./CommentList";
 import PostComment from "./PostComment";
+import handleErrorMessage from "../utils/handle-error-message";
+import ErrorComponent from "./ErrorComponent";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
   const [articleItem, setArticleItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const loadArticle = async () => {
-    const article = await fetchArticle(articleId);
-    setArticleItem(article);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const article = await fetchArticle(articleId);
+      setArticleItem(article);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      const customMessage = "loading failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
+    }
   };
 
   useEffect(() => {
@@ -23,6 +33,12 @@ export default function ArticleItem() {
   }, [articleId]);
 
   if (isLoading) return <p>Loading...</p>;
+  if (error)
+    return (
+      <h1 className="error-message">
+        <ErrorComponent error={error} />
+      </h1>
+    );
   return (
     <>
       <article className="article-item">
