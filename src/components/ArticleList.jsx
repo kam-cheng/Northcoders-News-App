@@ -27,6 +27,7 @@ export default function ArticleList() {
   //increase number of articles shown when button clicked
   const loadArticles = async () => {
     try {
+      setError(null);
       setIsLoading(true);
       const articles = await fetchArticles(
         limit,
@@ -44,12 +45,13 @@ export default function ArticleList() {
     }
   };
 
-  // articles will re-render each time limit or topic changes
+  // articles will re-render each time limit,topic,sortby or order changes
   useEffect(() => {
     loadArticles();
   }, [limit, topic, sortBy, order]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+
   if (error)
     return (
       <h1 className="error-message">
