@@ -1,6 +1,7 @@
 import { deleteComment } from "../utils/api";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/User";
+import handleErrorMessage from "../utils/handle-error-message";
 
 export default function DeleteComment({
   commentId,
@@ -19,7 +20,9 @@ export default function DeleteComment({
       setDeletedComment(<li>Comment Deleted!</li>);
     } catch (err) {
       setDeletedComment(false);
-      setError(true);
+      const customMessage =
+        "attempt to delete message failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
     }
   };
 

@@ -19,3 +19,20 @@
 .new-comment {
   list-style: none;
 }
+
+@media only screen and (min-width: 600px) {
+  .post-form {
+    margin: 20px;
+  }
+  .post-form * {
+    vertical-align: middle;
+  }
+  .comment-box {
+    width: 400px;
+    font-size: 1.3em;
+  }
+  .comment-box:focus {
+    height: 100px;
+    width: 65vw;
+  }
+}
