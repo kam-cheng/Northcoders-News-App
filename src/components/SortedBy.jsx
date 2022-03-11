@@ -12,7 +12,7 @@ export default function SortedBy({ sortBy, setSortBy }) {
   return (
     <>
       <h4>
-        <label for="sortBy-dropdown">sorted by:</label>
+        <label htmlFor="sortBy-dropdown">sorted by:</label>
         <DropDown list={sortBy} name={"sortBy"}>
           {sortByArray.map((element) => {
             return (
