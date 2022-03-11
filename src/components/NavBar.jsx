@@ -84,6 +84,9 @@ export default function NavBar() {
           })}
         </div>
       </div>
+      <Link to="/articles/submit" className="navbar-link">
+        Post Article
+      </Link>
     </div>
   );
 }

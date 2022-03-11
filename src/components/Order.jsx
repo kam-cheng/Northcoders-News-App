@@ -10,7 +10,7 @@ export default function Order({ order, setOrder }) {
   return (
     <>
       <h4>
-        order:
+        <label htmlFor="order-dropdown">order:</label>
         <DropDown list={order} name={"order"}>
           {orderArray.map((element) => {
             return (

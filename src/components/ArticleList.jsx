@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 import "./ArticleList.css";
 import SortedBy from "./SortedBy";
 import Order from "./Order";
-import { Link } from "react-router-dom";
+import handleErrorMessage from "../utils/handle-error-message";
+import ErrorComponent from "./ErrorComponent";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -21,32 +22,45 @@ export default function ArticleList() {
     name: "descending",
     apiValue: "desc",
   });
+  const [error, setError] = useState(null);
 
   //increase number of articles shown when button clicked
   const loadArticles = async () => {
-    setIsLoading(true);
-    const articles = await fetchArticles(
-      limit,
-      topic,
-      sortBy.apiValue,
-      order.apiValue
-    );
-    setArticleList(articles);
-    setIsLoading(false);
+    try {
+      setError(null);
+      setIsLoading(true);
+      const articles = await fetchArticles(
+        limit,
+        topic,
+        sortBy.apiValue,
+        order.apiValue
+      );
+      setArticleList(articles);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      const customMessage =
+        "loading articles failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
+    }
   };
 
-  // articles will re-render each time limit or topic changes
+  // articles will re-render each time limit,topic,sortby or order changes
   useEffect(() => {
     loadArticles();
   }, [limit, topic, sortBy, order]);
   let loading = "";
   if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+
+  if (error)
+    return (
+      <h1 className="error-message">
+        <ErrorComponent error={error} />
+      </h1>
+    );
   return (
     <>
       <section className="article-list">
-        <Link to="articles/submit">
-          <button className="create-article-button">Post New Article</button>
-        </Link>
         <div className="selectors">
           <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
           <Order order={order} setOrder={setOrder} />
