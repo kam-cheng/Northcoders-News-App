@@ -38,6 +38,7 @@ export default function DropDown({ children, list, name }) {
           toggleDropdown();
         }}
         className={`dropdown-button ${name}-button`}
+        id={`${name}-dropdown`}
       >
         {list.name}
         <i className="fa fa-caret-down"></i>

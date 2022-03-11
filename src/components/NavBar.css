@@ -69,3 +69,9 @@
 .show {
   display: block;
 }
+
+@media only screen and (min-width: 600px) {
+  .navbar * {
+    font-size: 1.5rem;
+  }
+}

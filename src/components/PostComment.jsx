@@ -4,6 +4,8 @@ import { addComment } from "../utils/api";
 import CommentItem from "./CommentItem";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
+import handleErrorMessage from "../utils/handle-error-message";
+import ErrorComponent from "./ErrorComponent";
 
 export default function PostComment({ articleId }) {
   const [newComment, setNewComment] = useState("");
@@ -16,7 +18,6 @@ export default function PostComment({ articleId }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
     setIsLoading(true);
     try {
       const comment = await addComment({
@@ -28,7 +29,9 @@ export default function PostComment({ articleId }) {
       setPostedComment(comment);
       setIsLoading(false);
     } catch (err) {
-      setError("attempt to post failed - please reload page and try again");
+      const customMessage =
+        "attempt to post comment failed - please reload page and try again";
+      setError(handleErrorMessage(err, customMessage));
     }
   };
 
@@ -41,7 +44,12 @@ export default function PostComment({ articleId }) {
       </ul>
     );
 
-  if (error) return <p>{error}</p>;
+  if (error)
+    return (
+      <h3 className="error-message">
+        <ErrorComponent error={error} />
+      </h3>
+    );
   if (isLoading) return <p>Submitting Message...</p>;
   return (
     <>
