@@ -8,31 +8,35 @@ The NC News App is a front-end application enabling users to interact with the N
 
 https://nc-news-site-kc.netlify.app/
 
-## Interacting with the app
+## Features
 
 ---
 
-Through the app, users will have access to, and be able to interact with the following:
+The NC News App offers users the following features and functionality:
 
 ### Articles
 
-- Default display of 10 article cards in date descending order, with the ability to load more via click of a button.
-- When selected, will display the entire article, and associated comments.
-- User ability to sort articles based on the following criteria:
+- Home page displays article cards containing the title, topic, author, date, number of comments, and number of likes.
+- When article cards are selected, users will be redirected to the article page, displaying the article body, and a list of comments
+- Topics page displays article cards filtered by topic of interest.
+- Users can sort articles based on the following criteria:
   - date
   - comment count
   - votes
-  - order (separate dropdown)
+  - order (ascending or descending)
+- The list of articles displayed is initially limited to 10 - this can be increased by selecting the 'Load More Articles' button at the bottom of the page.
 
-### Comments: displays upon selecting of article.
+### Comments
 
-- Default display of 10 comments, with the ability to load more via click of a button.
-- User ability to post comments.
-- User ability to delete comments matching their username only.
+- Comments are displayed in the related article's page.
+- Users are able to post comments in a text box below the article.
+- Users are able to delete comments associated with their own username (a bin icon will be displayed)
+- The list of comments is initially limited to 10, but can be increased by clicking the 'Load More Comments' button at the bottom of the page.
 
-### Likes: displayed for both articles and comments
+### Likes
 
-- User ability to like or dislike an article or comment.
+- Likes are displayed for each article and comment.
+- Users are able to increase or decrease the like count by 1.
 
 ## Link to repository
 
