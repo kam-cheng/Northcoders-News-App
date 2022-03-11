@@ -47,7 +47,7 @@ export default function NavBar() {
   }, [open]);
 
   return (
-    <div className="navbar">
+    <nav className="navbar">
       <Link to="/" className="navbar-link">
         Home
       </Link>
@@ -87,6 +87,6 @@ export default function NavBar() {
       <Link to="/articles/submit" className="navbar-link">
         Post Article
       </Link>
-    </div>
+    </nav>
   );
 }

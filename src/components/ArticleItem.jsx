@@ -46,37 +46,39 @@ export default function ArticleItem() {
     return <h2 className="heading-deleted">{deletedArticle}</h2>;
   return (
     <>
-      <article className="article-item">
-        <h2>{articleItem.title}</h2>
-        <h3>{articleItem.author}</h3>
-        <h4>Topic : {articleItem.topic}</h4>
-        <h4>{dayjs(articleItem.created_at).toString()}</h4>
-        <p>{articleItem.body}</p>
-        <div className="icon large">
-          <img
-            className="icon large"
-            src="/images/comment-icon.jpg"
-            alt="comments icon"
+      <section className="article-page">
+        <article className="article-item">
+          <h2>{articleItem.title}</h2>
+          <h3>{articleItem.author}</h3>
+          <h4>Topic : {articleItem.topic}</h4>
+          <h4>{dayjs(articleItem.created_at).toString()}</h4>
+          <p>{articleItem.body}</p>
+          <div className="icon large">
+            <img
+              className="icon large"
+              src="/images/comment-icon.jpg"
+              alt="comments icon"
+            />
+            {articleItem.comment_count} Comments
+          </div>
+          <VoteButton
+            articleId={articleItem.article_id}
+            votes={articleItem.votes}
+            size={"large"}
           />
-          {articleItem.comment_count} Comments
-        </div>
-        <VoteButton
-          articleId={articleItem.article_id}
-          votes={articleItem.votes}
-          size={"large"}
-        />
-        <DeleteButton
-          itemId={articleItem.article_id}
-          setDeletedItem={setDeletedArticle}
-          setError={setError}
-          author={articleItem.author}
-          deleteApiFunction={deleteArticle}
-          name={"Article"}
-          size={"large"}
-        />
-      </article>
-      <PostComment articleId={articleItem.article_id} />
-      <CommentList articleId={articleItem.article_id} />
+          <DeleteButton
+            itemId={articleItem.article_id}
+            setDeletedItem={setDeletedArticle}
+            setError={setError}
+            author={articleItem.author}
+            deleteApiFunction={deleteArticle}
+            name={"Article"}
+            size={"large"}
+          />
+        </article>
+        <PostComment articleId={articleItem.article_id} />
+        <CommentList articleId={articleItem.article_id} />
+      </section>
     </>
   );
 }

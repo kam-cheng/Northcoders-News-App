@@ -14,26 +14,28 @@ export default function CommentItem({
 
   if (deletedComment) return [deletedComment];
   return (
-    <li className="comment-item">
-      <p
-        className="error-message"
-        style={{ display: error ? "block" : "none" }}
-      >
-        <ErrorComponent error={error} />
-      </p>
-      <h4>{author}</h4>
-      <h5>{dayjs(created_at).toString()}</h5>
-      <p>{body}</p>
-      <VoteButton commentId={comment_id} votes={votes} size={"large"} />
-      <DeleteButton
-        itemId={comment_id}
-        setDeletedItem={setDeletedComment}
-        setError={setError}
-        author={author}
-        deleteApiFunction={deleteComment}
-        name={"Comment"}
-        size={"large"}
-      />
+    <li>
+      <article className="comment-item">
+        <p
+          className="error-message"
+          style={{ display: error ? "block" : "none" }}
+        >
+          <ErrorComponent error={error} />
+        </p>
+        <h4>{author}</h4>
+        <h5>{dayjs(created_at).toString()}</h5>
+        <p>{body}</p>
+        <VoteButton commentId={comment_id} votes={votes} size={"large"} />
+        <DeleteButton
+          itemId={comment_id}
+          setDeletedItem={setDeletedComment}
+          setError={setError}
+          author={author}
+          deleteApiFunction={deleteComment}
+          name={"Comment"}
+          size={"large"}
+        />
+      </article>
     </li>
   );
 }
