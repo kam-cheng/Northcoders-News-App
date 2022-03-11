@@ -8,12 +8,15 @@ import CommentList from "./CommentList";
 import PostComment from "./PostComment";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import { deleteArticle } from "../utils/api";
+import DeleteButton from "./DeleteButton";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
   const [articleItem, setArticleItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deletedArticle, setDeletedArticle] = useState(false);
 
   const loadArticle = async () => {
     try {
@@ -39,6 +42,8 @@ export default function ArticleItem() {
         <ErrorComponent error={error} />
       </h1>
     );
+  if (deletedArticle)
+    return <h2 className="heading-deleted">{deletedArticle}</h2>;
   return (
     <>
       <article className="article-item">
@@ -58,6 +63,15 @@ export default function ArticleItem() {
         <VoteButton
           articleId={articleItem.article_id}
           votes={articleItem.votes}
+          size={"large"}
+        />
+        <DeleteButton
+          itemId={articleItem.article_id}
+          setDeletedItem={setDeletedArticle}
+          setError={setError}
+          author={articleItem.author}
+          deleteApiFunction={deleteArticle}
+          name={"Article"}
           size={"large"}
         />
       </article>

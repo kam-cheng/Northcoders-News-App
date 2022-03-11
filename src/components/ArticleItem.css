@@ -16,9 +16,10 @@
   width: 30px;
 }
 
-.button-delete {
-  background-color: transparent;
-  border: none;
+.heading-deleted > * {
+  margin: 20px;
+  padding: 20px;
+  font-size: 1.3em;
 }
 
 @media only screen and (min-width: 600px) {
@@ -36,5 +37,8 @@
 
   .article-item > p {
     line-height: 30px;
+  }
+  .heading-deleted > * {
+    font-size: 2em;
   }
 }

@@ -77,6 +77,10 @@ const deleteComment = async (commentId) => {
   await axios.delete(`${apiLink}/comments/${commentId}`);
 };
 
+const deleteArticle = async (articleId) => {
+  await axios.delete(`${apiLink}/articles/${articleId}`);
+};
+
 const addArticle = async ({ username, title, body, topic }) => {
   const {
     data: { article },
@@ -98,4 +102,5 @@ export {
   addComment,
   deleteComment,
   addArticle,
+  deleteArticle,
 };
