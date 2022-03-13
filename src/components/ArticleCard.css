@@ -24,7 +24,7 @@
 
 .icon.small {
   font-size: 0.8em;
-  width: 15px;
+  width: 25px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -38,6 +38,6 @@
 
   .icon.small {
     font-size: 1em;
-    width: 20px;
+    width: 30px;
   }
 }
