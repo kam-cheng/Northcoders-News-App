@@ -1,5 +1,4 @@
 import "./App.css";
-import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import ArticleList from "./components/ArticleList";
 import ArticleItem from "./components/ArticleItem";
@@ -23,7 +22,6 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <div className="App">
           <div className="main">
-            <Header />
             <NavBar />
             <Routes>
               <Route path="/" element={<ArticleList />} />

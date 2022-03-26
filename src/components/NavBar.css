@@ -1,7 +1,13 @@
 /* Navbar container */
 .navbar {
   overflow: hidden;
-  background-color: #011638;
+  background-color: #414043;
+}
+
+.navbar img {
+  float: right;
+  width: 100px;
+  padding-right: 10px;
 }
 
 /* Links inside the navbar */
@@ -10,7 +16,8 @@
   font-size: 16px;
   color: #eef0f2;
   text-align: center;
-  padding: 14px 16px;
+  margin-top: 50px;
+  padding: 10px 10px;
   text-decoration: none;
 }
 
@@ -22,22 +29,22 @@
 
 /* Dropdown button */
 .navbar-dropbtn {
+  padding: 10px 10px;
   cursor: pointer;
   font-size: 16px;
   border: none;
   outline: none;
   color: #eef0f2;
-  padding: 14px 16px;
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+  margin-top: 50px; /* Important for vertical align on mobile phones */
 }
 
 /* Add a background color to navbar links on hover */
 .navbar-link:hover,
 .navbar-dropdown:hover .navbar-dropbtn,
 .navbar-dropbtn:focus {
-  background-color: #eec643;
+  background-color: #222327;
 }
 
 /* Dropdown content (hidden by default) */
@@ -73,5 +80,9 @@
 @media only screen and (min-width: 600px) {
   .navbar * {
     font-size: 1.5rem;
+  }
+
+  .navbar img {
+    height: 100px;
   }
 }

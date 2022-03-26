@@ -47,46 +47,49 @@ export default function NavBar() {
   }, [open]);
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-link">
-        Home
-      </Link>
-      <div className="navbar-dropdown">
-        <button
-          className="navbar-dropbtn"
-          onClick={() => {
-            setOpen(!open);
-            toggleDropdown();
-          }}
-        >
-          Topics
-          <i className="fa fa-caret-down"></i>
-        </button>
-        <div
-          id="navbar-myDropdown"
-          className="navbar-dropdown-content"
-          ref={node}
-          onClick={() => {
-            setOpen(!open);
-            toggleDropdown();
-          }}
-        >
-          {topics.map(({ slug }) => {
-            return (
-              <Link
-                to={`topics/${slug}`}
-                className="navbar-dropdown-link"
-                key={slug}
-              >
-                {slug}
-              </Link>
-            );
-          })}
+    <header>
+      <nav className="navbar">
+        <Link to="/" className="navbar-link">
+          Home
+        </Link>
+        <div className="navbar-dropdown">
+          <button
+            className="navbar-dropbtn"
+            onClick={() => {
+              setOpen(!open);
+              toggleDropdown();
+            }}
+          >
+            Topics
+            <i className="fa fa-caret-down"></i>
+          </button>
+          <div
+            id="navbar-myDropdown"
+            className="navbar-dropdown-content"
+            ref={node}
+            onClick={() => {
+              setOpen(!open);
+              toggleDropdown();
+            }}
+          >
+            {topics.map(({ slug }) => {
+              return (
+                <Link
+                  to={`topics/${slug}`}
+                  className="navbar-dropdown-link"
+                  key={slug}
+                >
+                  {slug}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <Link to="/articles/submit" className="navbar-link">
-        Post Article
-      </Link>
-    </nav>
+        <Link to="/articles/submit" className="navbar-link">
+          Post Article
+        </Link>
+        <img src="images/logo-newspaper.png" alt="nc news logo" />
+      </nav>
+    </header>
   );
 }

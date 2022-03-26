@@ -15,32 +15,9 @@ body {
 
 .App {
   text-align: center;
-  font-family: "Roboto", sans-serif;
-  color: #1f1a38;
+  font-family: "Inter", sans-serif;
+  color: #222327;
   background-color: #eef0f2;
   font-size: 16px;
   line-height: 1.25;
-}
-
-header h1 {
-  font-family: "Abril Fatface", cursive;
-  font-weight: 400;
-  padding: 20px;
-  background-color: #011638;
-  color: #eef0f2;
-}
-
-header img {
-  float: right;
-  width: 50px;
-}
-
-@media only screen and (min-width: 600px) {
-  .header-text {
-    font-size: 4em;
-  }
-
-  header img {
-    width: 100px;
-  }
 }
