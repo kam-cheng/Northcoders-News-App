@@ -34,6 +34,9 @@ export default function PostArticle() {
     }
   };
 
+  // change button innerText when button is clicked
+  const postingArticle = isLoading ? "Posting Article" : "Post Article";
+
   if (error)
     return (
       <h3 className="error-message">
@@ -92,7 +95,7 @@ export default function PostArticle() {
                 loadingPosition="end"
                 variant="contained"
               >
-                Post Article
+                {postingArticle}
               </LoadingButton>
             </Stack>
           </label>
