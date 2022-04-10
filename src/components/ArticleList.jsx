@@ -14,6 +14,7 @@ export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(false);
+  const [hideIncButton, sethideIncButton] = useState(false);
   const [sortBy, setSortBy] = useState({
     name: "date",
     apiValue: "created_at",
@@ -37,6 +38,7 @@ export default function ArticleList() {
       );
       setArticleList(articles);
       setIsLoading(false);
+      if (limit > articles.length) sethideIncButton(true);
     } catch (err) {
       setIsLoading(false);
       const customMessage =
@@ -73,11 +75,10 @@ export default function ArticleList() {
           })}
         </ul>
         <IncrementButton
-          list={articleList}
           setLimit={setLimit}
-          limit={limit}
           name={`Articles`}
           isLoading={isLoading}
+          hideIncButton={hideIncButton}
         />
       </section>
     </>

@@ -10,6 +10,7 @@ export default function CommentList({ articleId }) {
   const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hideIncButton, sethideIncButton] = useState(false);
 
   const loadComments = async () => {
     try {
@@ -17,6 +18,7 @@ export default function CommentList({ articleId }) {
       const comments = await fetchComments(limit, articleId);
       setCommentList(comments);
       setIsLoading(false);
+      if (limit > comments.length) sethideIncButton(true);
     } catch (err) {
       setIsLoading(false);
       const customMessage =
@@ -46,10 +48,10 @@ export default function CommentList({ articleId }) {
         })}
       </ul>
       <IncrementButton
-        list={commentList}
         setLimit={setLimit}
-        limit={limit}
         name={`Comments`}
+        isLoading={isLoading}
+        hideIncButton={hideIncButton}
       />
     </section>
   );

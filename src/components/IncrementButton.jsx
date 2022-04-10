@@ -3,11 +3,10 @@ import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOu
 import "./IncrementButton.css";
 
 export default function IncrementButton({
-  limit,
-  list,
   setLimit,
   name,
   isLoading,
+  hideIncButton,
 }) {
   const incrementLimit = async (increment) => {
     setLimit((currLimit) => {
@@ -15,8 +14,11 @@ export default function IncrementButton({
     });
   };
 
-  let disableButton = false;
-  if (limit > list.length) disableButton = true;
+  // hides button when there are no more articles to load
+  if (hideIncButton) return <h2>No More {name}</h2>;
+
+  //change innerText of button based on loading state
+  let buttonText = isLoading ? `Loading ${name}` : `Load more ${name}`;
 
   return (
     <LoadingButton
@@ -28,9 +30,8 @@ export default function IncrementButton({
       onClick={() => {
         incrementLimit(5);
       }}
-      disabled={disableButton}
     >
-      Load more {name}
+      {buttonText}
     </LoadingButton>
   );
 }
