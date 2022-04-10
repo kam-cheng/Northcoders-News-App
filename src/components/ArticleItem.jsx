@@ -10,6 +10,7 @@ import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
 import { deleteArticle } from "../utils/api";
 import DeleteButton from "./DeleteButton";
+import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -54,11 +55,7 @@ export default function ArticleItem() {
           <h4>{dayjs(articleItem.created_at).toString()}</h4>
           <p>{articleItem.body}</p>
           <div className="icon large">
-            <img
-              className="icon large"
-              src="/images/comment-icon.jpg"
-              alt="comments icon"
-            />
+            <CommentOutlinedIcon fontSize="large" />
             {articleItem.comment_count} Comments
           </div>
           <VoteButton
