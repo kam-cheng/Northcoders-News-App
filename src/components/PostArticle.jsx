@@ -79,8 +79,7 @@ export default function PostArticle() {
                 id="standard-multiline-static"
                 label="Text"
                 multiline
-                rows={4}
-                defaultValue="Default Value"
+                minRows={4}
                 variant="filled"
                 value={body}
                 onChange={(event) => setBody(event.target.value)}
