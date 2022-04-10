@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import handleErrorMessage from "../utils/handle-error-message";
 import "./DeleteButton.css";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import IconButton from "@mui/material/IconButton";
 
 export default function DeleteArticle({
   itemId,
@@ -30,17 +32,13 @@ export default function DeleteArticle({
 
   if (author !== username) return <></>;
   return (
-    <button
+    <IconButton
+      aria-label="delete-button"
       onClick={() => {
         removeItem();
       }}
-      className="button-delete"
     >
-      <img
-        src="/images/delete-icon.png"
-        className={`icon ${size}`}
-        alt={`delete ${name} button`}
-      />
-    </button>
+      <DeleteOutlineOutlinedIcon fontSize="large" />
+    </IconButton>
   );
 }

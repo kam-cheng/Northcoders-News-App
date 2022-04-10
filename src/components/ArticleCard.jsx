@@ -1,5 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import "./ArticleCard.css";
@@ -29,47 +30,49 @@ export default function ArticleCard({
   if (deletedArticle) return [deletedArticle];
   return (
     <li>
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <p
-            className="error-message"
-            style={{ display: error ? "block" : "none" }}
-          >
-            <ErrorComponent error={error} />
-          </p>
-          <Link to={`/articles/${article_id}`} className="article-link">
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
+      <Card sx={{ minWidth: 300, margin: "20px", maxWidth: 450 }}>
+        <CardActionArea>
+          <CardContent>
+            <p
+              className="error-message"
+              style={{ display: error ? "block" : "none" }}
             >
-              {author}
-            </Typography>
-            <Typography variant="h5" component="div">
-              {title}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {topic}
-            </Typography>
-            <Typography variant="body2">
-              {dayjs(created_at).toString()}
-            </Typography>
-            <div className="icon small">
-              <CommentOutlinedIcon fontSize="small" />
-              {comment_count} Comments
-            </div>
-          </Link>
-          <VoteButton articleId={article_id} votes={votes} size={"small"} />
-          <DeleteButton
-            itemId={article_id}
-            setDeletedItem={setDeletedArticle}
-            setError={setError}
-            author={author}
-            deleteApiFunction={deleteArticle}
-            name={"Article"}
-            size={"small"}
-          />
-        </CardContent>
+              <ErrorComponent error={error} />
+            </p>
+            <Link to={`/articles/${article_id}`} className="article-link">
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                {author}
+              </Typography>
+              <Typography variant="h5" component="div">
+                {title}
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                {topic}
+              </Typography>
+              <Typography variant="body2">
+                {dayjs(created_at).toString()}
+              </Typography>
+              <div className="icon small">
+                <CommentOutlinedIcon fontSize="small" />
+                {comment_count} Comments
+              </div>
+            </Link>
+            <VoteButton articleId={article_id} votes={votes} size={"small"} />
+            <DeleteButton
+              itemId={article_id}
+              setDeletedItem={setDeletedArticle}
+              setError={setError}
+              author={author}
+              deleteApiFunction={deleteArticle}
+              name={"Article"}
+              size={"small"}
+            />
+          </CardContent>
+        </CardActionArea>
       </Card>
     </li>
   );
