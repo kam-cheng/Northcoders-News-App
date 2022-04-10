@@ -2,6 +2,9 @@ import { useState } from "react";
 import { patchVotes } from "../utils/api";
 import ErrorComponent from "./ErrorComponent";
 import handleErrorMessage from "../utils/handle-error-message";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
+import IconButton from "@mui/material/IconButton";
 
 export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
@@ -43,33 +46,26 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
     );
   return (
     <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
-      <button
-        className="vote-button"
+      <IconButton
+        aria-label="thumb-up"
         onClick={() => {
           incrementVote(1);
         }}
         disabled={disableUpButton}
       >
-        <img
-          src="/images/thumb-up.png"
-          className={`icon ${size}`}
-          alt="up vote icon"
-        />
-      </button>
+        <ThumbUpOutlinedIcon />
+      </IconButton>
       {voteTotal}
-      <button
+      <IconButton
+        aria-label="thumb-down"
         className="vote-button"
         onClick={() => {
           incrementVote(-1);
         }}
         disabled={disableDownButton}
       >
-        <img
-          src="/images/thumb-down.png"
-          className={`icon ${size}`}
-          alt="down vote icon"
-        />
-      </button>
+        <ThumbDownOutlinedIcon />
+      </IconButton>
     </div>
   );
 }

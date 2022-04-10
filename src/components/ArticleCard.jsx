@@ -1,3 +1,7 @@
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import "./ArticleCard.css";
 import VoteButton from "./VoteButton";
 import { Link } from "react-router-dom";
@@ -25,38 +29,48 @@ export default function ArticleCard({
   if (deletedArticle) return [deletedArticle];
   return (
     <li>
-      <article className="article-card">
-        <p
-          className="error-message"
-          style={{ display: error ? "block" : "none" }}
-        >
-          <ErrorComponent error={error} />
-        </p>
-        <Link to={`/articles/${article_id}`} className="article-link">
-          <h3>{title}</h3>
-          <p>{topic}</p>
-          <p>author: {author}</p>
-          <p>{dayjs(created_at).toString()}</p>
-          <div className="icon small">
-            <img
-              className="icon small"
-              src="/images/comment-icon.jpg"
-              alt="comments icon"
-            />
-            {comment_count} Comments
-          </div>
-        </Link>
-        <VoteButton articleId={article_id} votes={votes} size={"small"} />
-        <DeleteButton
-          itemId={article_id}
-          setDeletedItem={setDeletedArticle}
-          setError={setError}
-          author={author}
-          deleteApiFunction={deleteArticle}
-          name={"Article"}
-          size={"small"}
-        />
-      </article>
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <p
+            className="error-message"
+            style={{ display: error ? "block" : "none" }}
+          >
+            <ErrorComponent error={error} />
+          </p>
+          <Link to={`/articles/${article_id}`} className="article-link">
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              {author}
+            </Typography>
+            <Typography variant="h5" component="div">
+              {title}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {topic}
+            </Typography>
+            <Typography variant="body2">
+              {dayjs(created_at).toString()}
+            </Typography>
+            <div className="icon small">
+              <CommentOutlinedIcon fontSize="small" />
+              {comment_count} Comments
+            </div>
+          </Link>
+          <VoteButton articleId={article_id} votes={votes} size={"small"} />
+          <DeleteButton
+            itemId={article_id}
+            setDeletedItem={setDeletedArticle}
+            setError={setError}
+            author={author}
+            deleteApiFunction={deleteArticle}
+            name={"Article"}
+            size={"small"}
+          />
+        </CardContent>
+      </Card>
     </li>
   );
 }
