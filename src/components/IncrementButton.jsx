@@ -1,21 +1,36 @@
+import LoadingButton from "@mui/lab/LoadingButton";
+import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import "./IncrementButton.css";
 
-export default function IncrementButton({ limit, list, setLimit, name }) {
+export default function IncrementButton({
+  limit,
+  list,
+  setLimit,
+  name,
+  isLoading,
+}) {
   const incrementLimit = async (increment) => {
     setLimit((currLimit) => {
       return currLimit + increment;
     });
   };
 
-  if (limit > list.length) return <></>;
+  let disableButton = false;
+  if (limit > list.length) disableButton = true;
+
   return (
-    <button
-      className="increment-button"
+    <LoadingButton
+      size="large"
+      endIcon={<ExpandCircleDownOutlinedIcon />}
+      loading={isLoading}
+      loadingPosition="end"
+      variant="outlined"
       onClick={() => {
         incrementLimit(5);
       }}
+      disabled={disableButton}
     >
       Load more {name}
-    </button>
+    </LoadingButton>
   );
 }

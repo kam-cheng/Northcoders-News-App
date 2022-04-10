@@ -13,7 +13,7 @@ export default function ArticleList() {
   const { topic } = useParams();
   const [articleList, setArticleList] = useState([]);
   const [limit, setLimit] = useState(10);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [sortBy, setSortBy] = useState({
     name: "date",
     apiValue: "created_at",
@@ -77,6 +77,7 @@ export default function ArticleList() {
           setLimit={setLimit}
           limit={limit}
           name={`Articles`}
+          isLoading={isLoading}
         />
       </section>
     </>
