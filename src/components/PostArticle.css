@@ -1,7 +1,11 @@
 .article-form {
   padding-bottom: 30px;
 }
-.article-form * {
+.article-form h2 {
+  display: block;
+  margin: 25px auto;
+}
+.article-form input {
   display: block;
   margin: 25px auto;
 }

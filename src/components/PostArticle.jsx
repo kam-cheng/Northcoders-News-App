@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
 import { addArticle } from "../utils/api";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
@@ -65,9 +67,14 @@ export default function PostArticle() {
               onChange={(event) => setBody(event.target.value)}
               required
             />
-            <button className="increment-button article" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              size="large"
+              endIcon={<EmailIcon />}
+            >
               Post Article
-            </button>
+            </Button>
           </label>
         </form>
       </section>
