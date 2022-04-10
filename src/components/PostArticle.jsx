@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { addArticle } from "../utils/api";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
@@ -39,7 +40,6 @@ export default function PostArticle() {
         <ErrorComponent error={error} />
       </h3>
     );
-  if (isLoading) return <p>Submitting Article...</p>;
   return (
     <>
       <section className="article-form">
@@ -67,14 +67,16 @@ export default function PostArticle() {
               onChange={(event) => setBody(event.target.value)}
               required
             />
-            <Button
-              variant="contained"
-              type="submit"
+            <LoadingButton
               size="large"
+              type="submit"
               endIcon={<EmailIcon />}
+              loading={isLoading}
+              loadingPosition="end"
+              variant="contained"
             >
               Post Article
-            </Button>
+            </LoadingButton>
           </label>
         </form>
       </section>
