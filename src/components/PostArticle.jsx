@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import EmailIcon from "@mui/icons-material/Email";
 import LoadingButton from "@mui/lab/LoadingButton";
+import Stack from "@mui/material/Stack";
 import { addArticle } from "../utils/api";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/User";
-import "./PostArticle.css";
 import { useNavigate } from "react-router-dom";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
@@ -46,37 +46,56 @@ export default function PostArticle() {
         <form onSubmit={handleSubmit} className="article-form">
           <label>
             <h2>Post New Article</h2>
-            <input
-              placeholder="Title"
-              className="article-input"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-              required
-            />
-            <input
-              placeholder="Topic"
-              className="article-input"
-              value={topic}
-              onChange={(event) => setTopic(event.target.value)}
-              required
-            />
-            <textarea
-              className="article-text-box"
-              placeholder="Text"
-              value={body}
-              onChange={(event) => setBody(event.target.value)}
-              required
-            />
-            <LoadingButton
-              size="large"
-              type="submit"
-              endIcon={<EmailIcon />}
-              loading={isLoading}
-              loadingPosition="end"
-              variant="contained"
+            <Stack
+              direction="column"
+              justifyContent="center"
+              alignItems="stretch"
+              spacing={2}
             >
-              Post Article
-            </LoadingButton>
+              <TextField
+                size="medium"
+                disabled={isLoading}
+                required
+                id="standard-required"
+                label="Title"
+                variant="filled"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+              <TextField
+                size="medium"
+                disabled={isLoading}
+                required
+                id="standard-required"
+                label="Topic"
+                variant="filled"
+                value={topic}
+                onChange={(event) => setTopic(event.target.value)}
+              />
+              <TextField
+                size="medium"
+                disabled={isLoading}
+                required
+                id="standard-multiline-static"
+                label="Text"
+                multiline
+                rows={4}
+                defaultValue="Default Value"
+                variant="filled"
+                value={body}
+                onChange={(event) => setBody(event.target.value)}
+              />
+              <LoadingButton
+                size="medium"
+                type="submit"
+                endIcon={<EmailIcon />}
+                loading={isLoading}
+                loadingPosition="end"
+                variant="contained"
+              >
+                Post Article
+              </LoadingButton>
+            </Stack>
           </label>
         </form>
       </section>
