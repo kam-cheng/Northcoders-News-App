@@ -8,6 +8,7 @@ import SortedBy from "./SortedBy";
 import Order from "./Order";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import Typography from "@mui/material/Typography";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -52,7 +53,12 @@ export default function ArticleList() {
     loadArticles();
   }, [limit, topic, sortBy, order]);
   let loading = "";
-  if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+  if (isLoading)
+    loading = (
+      <Typography variant="h4" gutterBottom>
+        Loading Articles...
+      </Typography>
+    );
 
   if (error)
     return (
@@ -67,7 +73,9 @@ export default function ArticleList() {
           <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
           <Order order={order} setOrder={setOrder} />
         </div>
-        <h2 className="title">{topic || `Article List`}</h2>
+        <Typography variant="h4" gutterBottom>
+          {topic || `Article List`}
+        </Typography>
         {loading}
         <ul>
           {articleList.map((article) => {
