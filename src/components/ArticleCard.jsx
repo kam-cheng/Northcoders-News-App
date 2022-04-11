@@ -41,25 +41,27 @@ export default function ArticleCard({
             </p>
             <Link to={`/articles/${article_id}`} className="article-link">
               <Typography
-                sx={{ fontSize: 14 }}
+                variant="subtitle2"
                 color="text.secondary"
                 gutterBottom
               >
                 {author}
               </Typography>
-              <Typography variant="h5" component="div">
+              <Typography variant="h5" gutterBottom color="text.primary">
                 {title}
               </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              <Typography
+                variant="subtitle2"
+                color="text.secondary"
+                gutterBottom
+              >
                 {topic}
               </Typography>
               <Typography variant="body2">
                 {dayjs(created_at).toString()}
               </Typography>
-              <div className="icon small">
-                <CommentOutlinedIcon fontSize="small" />
-                {comment_count} Comments
-              </div>
+              <CommentOutlinedIcon fontSize="small" />
+              {comment_count} Comments
             </Link>
             <VoteButton articleId={article_id} votes={votes} size={"small"} />
             <DeleteButton
