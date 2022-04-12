@@ -1,5 +1,7 @@
+import * as React from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -57,6 +59,7 @@ export default function SortedBy({ sortBy, setSortBy }) {
         role={undefined}
         transition
         disablePortal
+        sx={{ zIndex: "tooltip" }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

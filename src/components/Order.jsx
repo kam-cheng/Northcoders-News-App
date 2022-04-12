@@ -56,6 +56,7 @@ export default function Order({ order, setOrder }) {
         role={undefined}
         transition
         disablePortal
+        sx={{ zIndex: "tooltip" }}
       >
         {({ TransitionProps, placement }) => (
           <Grow
