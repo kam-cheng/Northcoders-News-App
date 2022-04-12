@@ -48,7 +48,7 @@ export default function Order({ order, setOrder }) {
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
-        >{`Sort By ${orderArray[selectedIndex].name}`}</Button>
+        >{`Order ${orderArray[selectedIndex].name}`}</Button>
       </ButtonGroup>
       <Popper
         open={open}
