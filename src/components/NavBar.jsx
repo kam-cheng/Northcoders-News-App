@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SideDrawer from "./SideDrawer";
+import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,6 +15,7 @@ import Typography from "@mui/material/Typography";
 const drawerWidth = 240;
 
 export default function NavBar(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -50,9 +53,17 @@ export default function NavBar(props) {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" noWrap component="div">
-                NC News
-              </Typography>
+              <Button
+                color="inherit"
+                variant="text"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <Typography variant="h6" noWrap component="div">
+                  NC News
+                </Typography>
+              </Button>
             </Toolbar>
           </AppBar>
           <Box
