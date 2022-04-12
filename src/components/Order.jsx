@@ -19,7 +19,7 @@ export default function Order({ order, setOrder }) {
 
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -40,11 +40,7 @@ export default function Order({ order, setOrder }) {
 
   return (
     <>
-      <ButtonGroup
-        variant="contained"
-        ref={anchorRef}
-        aria-label="split button"
-      >
+      <ButtonGroup variant="outlined" ref={anchorRef} aria-label="split button">
         <Button
           endIcon={<ArrowDropDownIcon />}
           aria-controls={open ? "split-button-menu" : undefined}
