@@ -1,35 +1,21 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { fetchTopics } from "../utils/api";
+import { useState } from "react";
+import SideDrawer from "./SideDrawer";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
-import SubjectOutlinedIcon from "@mui/icons-material/SubjectOutlined";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 
 // set width of side drawer
 const drawerWidth = 240;
 
 export default function NavBar(props) {
-  // navigate to different links
-  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -38,95 +24,9 @@ export default function NavBar(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const [open, setOpen] = useState(false);
-  const [topics, setTopics] = useState([]);
-
-  //fetch topics list
-  const getTopics = async () => {
-    const topics = await fetchTopics();
-    setTopics(topics);
-  };
-
   const handleClick = () => {
     setOpen(!open);
   };
-
-  //run function on mount only
-  useEffect(() => {
-    getTopics();
-  }, []);
-
-  const drawer = (
-    <div>
-      <Toolbar />
-      <List>
-        <ListItem
-          disablePadding
-          button
-          key={"Home"}
-          onClick={() => {
-            handleDrawerToggle();
-            navigate("/");
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <HomeOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding button key={"Topics"} onClick={handleClick}>
-          <ListItemButton>
-            <ListItemIcon>
-              <TopicOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Topics" />
-          </ListItemButton>
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          {topics.map(({ slug }) => {
-            return (
-              <ListItem
-                disablePadding
-                button
-                key={slug}
-                onClick={() => {
-                  handleDrawerToggle();
-                  navigate(`topics/${slug}`);
-                }}
-                sx={{ pl: 4 }}
-              >
-                <ListItemButton>
-                  <ListItemIcon>
-                    <SubjectOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={slug} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </Collapse>
-        <ListItem
-          disablePadding
-          button
-          key={"Post"}
-          onClick={() => {
-            handleDrawerToggle();
-            navigate("/articles/submit");
-          }}
-        >
-          <ListItemButton>
-            <ListItemIcon>
-              <EmailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Post Article" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </div>
-  );
 
   return (
     <header>
@@ -178,7 +78,11 @@ export default function NavBar(props) {
                 },
               }}
             >
-              {drawer}
+              <SideDrawer
+                handleDrawerToggle={handleDrawerToggle}
+                handleClick={handleClick}
+                open={open}
+              />
             </Drawer>
             {/* Display drawer permanently on larger screens  */}
             <Drawer
@@ -192,7 +96,11 @@ export default function NavBar(props) {
               }}
               open
             >
-              {drawer}
+              <SideDrawer
+                handleDrawerToggle={handleDrawerToggle}
+                handleClick={handleClick}
+                open={open}
+              />
             </Drawer>
           </Box>
           <Box
