@@ -1,3 +1,5 @@
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActionArea from "@mui/material/CardActionArea";
@@ -33,12 +35,13 @@ export default function ArticleCard({
       <Card sx={{ minWidth: 300, margin: "20px", maxWidth: 450 }}>
         <CardActionArea>
           <CardContent>
-            <p
-              className="error-message"
-              style={{ display: error ? "block" : "none" }}
+            <Typography
+              variant="body1"
+              sx={{ display: error ? "block" : "none" }}
+              color="error"
             >
               <ErrorComponent error={error} />
-            </p>
+            </Typography>
             <Link to={`/articles/${article_id}`} className="article-link">
               <Typography
                 variant="subtitle2"
@@ -60,19 +63,33 @@ export default function ArticleCard({
               <Typography variant="body2">
                 {dayjs(created_at).toString()}
               </Typography>
-              <CommentOutlinedIcon fontSize="small" />
-              {comment_count} Comments
             </Link>
-            <VoteButton articleId={article_id} votes={votes} size={"small"} />
-            <DeleteButton
-              itemId={article_id}
-              setDeletedItem={setDeletedArticle}
-              setError={setError}
-              author={author}
-              deleteApiFunction={deleteArticle}
-              name={"Article"}
-              size={"small"}
-            />
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={1}
+            >
+              <Link to={`/articles/${article_id}`} className="article-link">
+                <Button
+                  variant="text"
+                  startIcon={<CommentOutlinedIcon fontSize="small" />}
+                  color="inherit"
+                >
+                  {comment_count} Comments
+                </Button>
+              </Link>
+              <VoteButton articleId={article_id} votes={votes} size={"small"} />
+              <DeleteButton
+                itemId={article_id}
+                setDeletedItem={setDeletedArticle}
+                setError={setError}
+                author={author}
+                deleteApiFunction={deleteArticle}
+                name={"Article"}
+                size={"small"}
+              />
+            </Stack>
           </CardContent>
         </CardActionArea>
       </Card>
