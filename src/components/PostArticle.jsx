@@ -1,14 +1,15 @@
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/User";
+import { useNavigate } from "react-router-dom";
+import { addArticle } from "../utils/api";
 import TextField from "@mui/material/TextField";
 import EmailIcon from "@mui/icons-material/Email";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Stack from "@mui/material/Stack";
-import { addArticle } from "../utils/api";
-import { useState, useContext } from "react";
-import { UserContext } from "../contexts/User";
-import { useNavigate } from "react-router-dom";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function PostArticle() {
   const {
@@ -40,21 +41,24 @@ export default function PostArticle() {
 
   if (error)
     return (
-      <Typography variant="h3">
+      <Typography variant="h5" color="error">
         <ErrorComponent error={error} />
       </Typography>
     );
   return (
     <>
-      <section className="article-form">
-        <form onSubmit={handleSubmit} className="article-form">
-          <label>
-            <Typography variant="h2">Post New Article</Typography>
+      <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
+        <form onSubmit={handleSubmit}>
+          <Box m={3}>
+            <Typography variant="h4" gutterBottom sx={{ pt: 2 }}>
+              Post New Article
+            </Typography>
             <Stack
               direction="column"
               justifyContent="center"
               alignItems="stretch"
               spacing={2}
+              sx={{ mt: 4 }}
             >
               <TextField
                 size="medium"
@@ -83,7 +87,7 @@ export default function PostArticle() {
                 id="standard-multiline-static"
                 label="Text"
                 multiline
-                minRows={4}
+                minRows={8}
                 variant="filled"
                 value={body}
                 onChange={(event) => setBody(event.target.value)}
@@ -99,9 +103,9 @@ export default function PostArticle() {
                 {postingArticle}
               </LoadingButton>
             </Stack>
-          </label>
+          </Box>
         </form>
-      </section>
+      </Box>
     </>
   );
 }
