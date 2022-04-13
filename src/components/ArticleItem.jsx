@@ -1,16 +1,16 @@
 import { useParams } from "react-router-dom";
-import { fetchArticle } from "../utils/api";
 import { useState, useEffect } from "react";
-import "./ArticleItem.css";
 import dayjs from "dayjs";
+import { fetchArticle } from "../utils/api";
+import { deleteArticle } from "../utils/api";
+import handleErrorMessage from "../utils/handle-error-message";
 import VoteButton from "./VoteButton";
 import CommentList from "./CommentList";
 import PostComment from "./PostComment";
-import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
-import { deleteArticle } from "../utils/api";
 import DeleteButton from "./DeleteButton";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -36,28 +36,51 @@ export default function ArticleItem() {
     loadArticle();
   }, [articleId]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Typography variant="h5">Loading...</Typography>;
   if (error)
     return (
-      <h1 className="error-message">
+      <Typography variant="h5" color="error">
         <ErrorComponent error={error} />
-      </h1>
+      </Typography>
     );
   if (deletedArticle)
-    return <h2 className="heading-deleted">{deletedArticle}</h2>;
+    return (
+      <Typography variant="h5" color="success">
+        {deletedArticle}
+      </Typography>
+    );
   return (
-    <>
-      <section className="article-page">
-        <article className="article-item">
-          <h2>{articleItem.title}</h2>
-          <h3>{articleItem.author}</h3>
-          <h4>Topic : {articleItem.topic}</h4>
-          <h4>{dayjs(articleItem.created_at).toString()}</h4>
-          <p>{articleItem.body}</p>
-          <div className="icon large">
-            <CommentOutlinedIcon fontSize="large" />
-            {articleItem.comment_count} Comments
-          </div>
+    <Box>
+      <Box sx={{ m: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          {articleItem.title}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          by: {articleItem.author}
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          Topic : {articleItem.topic}
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          {dayjs(articleItem.created_at).toString()}
+        </Typography>
+        <Divider sx={{ mt: 2, mb: 4 }} />
+        <Typography variant="body1" gutterBottom>
+          {articleItem.body}
+        </Typography>
+        <Stack
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
+          spacing={1}
+          sx={{ mt: 3 }}
+        >
+          <Stack direction="row" spacing={1}>
+            <CommentOutlinedIcon fontSize="medium" />
+            <Typography variant="button">
+              {articleItem.comment_count} Comments
+            </Typography>
+          </Stack>
           <VoteButton
             articleId={articleItem.article_id}
             votes={articleItem.votes}
@@ -72,10 +95,10 @@ export default function ArticleItem() {
             name={"Article"}
             size={"large"}
           />
-        </article>
-        <PostComment articleId={articleItem.article_id} />
-        <CommentList articleId={articleItem.article_id} />
-      </section>
-    </>
+        </Stack>
+      </Box>
+      <PostComment articleId={articleItem.article_id} />
+      <CommentList articleId={articleItem.article_id} />
+    </Box>
   );
 }
