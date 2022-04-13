@@ -1,4 +1,5 @@
 import Stack from "@mui/material/Stack";
+import ListItem from "@mui/material/ListItem";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -31,8 +32,11 @@ export default function ArticleCard({
 
   if (deletedArticle) return [deletedArticle];
   return (
-    <li>
-      <Card sx={{ minWidth: 300, margin: "20px", maxWidth: 450 }}>
+    <ListItem>
+      <Card
+        sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
+        align="center"
+      >
         <CardActionArea>
           <CardContent>
             <Typography
@@ -93,6 +97,6 @@ export default function ArticleCard({
           </CardContent>
         </CardActionArea>
       </Card>
-    </li>
+    </ListItem>
   );
 }
