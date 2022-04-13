@@ -50,7 +50,7 @@ export default function ArticleItem() {
       </Typography>
     );
   return (
-    <Box>
+    <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
       <Box sx={{ m: 4 }}>
         <Typography variant="h4" gutterBottom>
           {articleItem.title}
