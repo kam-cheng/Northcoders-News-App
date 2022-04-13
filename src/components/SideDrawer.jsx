@@ -76,7 +76,8 @@ export default function SideDrawer({ handleDrawerToggle, handleClick, open }) {
                     <SubjectOutlinedIcon />
                   </ListItemIcon>
                   <ListItemText
-                    primary={slug[0].toUpperCase() + slug.substring(1)}
+                    sx={{ textTransform: "capitalize" }}
+                    primary={slug}
                   />
                 </ListItemButton>
               </ListItem>

@@ -80,7 +80,7 @@ export default function ArticleList() {
         <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
         <Order order={order} setOrder={setOrder} />
       </Stack>
-      <Typography variant="h4" gutterBottom sx={{ pt: 2 }}>
+      <Typography variant="h4" sx={{ pt: 2, textTransform: "capitalize" }}>
         {topic || `Article List`}
       </Typography>
       {loading}
