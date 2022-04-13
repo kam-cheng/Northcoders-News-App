@@ -1,6 +1,6 @@
 import LoadingButton from "@mui/lab/LoadingButton";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
-import "./IncrementButton.css";
+import Typography from "@mui/material/Typography";
 
 export default function IncrementButton({
   setLimit,
@@ -15,7 +15,12 @@ export default function IncrementButton({
   };
 
   // hides button when there are no more articles to load
-  if (hideIncButton) return <h2>No More {name}</h2>;
+  if (hideIncButton)
+    return (
+      <Typography variant="h5" gutterBottom>
+        No More {name}!
+      </Typography>
+    );
 
   //change innerText of button based on loading state
   let buttonText = isLoading ? `Loading ${name}` : `Load more ${name}`;
@@ -30,6 +35,7 @@ export default function IncrementButton({
       onClick={() => {
         incrementLimit(5);
       }}
+      sx={{ mb: 4 }}
     >
       {buttonText}
     </LoadingButton>
