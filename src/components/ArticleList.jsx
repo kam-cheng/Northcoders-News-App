@@ -9,6 +9,8 @@ import Order from "./Order";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
 import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import Stack from "@mui/material/Stack";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -55,40 +57,44 @@ export default function ArticleList() {
   let loading = "";
   if (isLoading)
     loading = (
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         Loading Articles...
       </Typography>
     );
 
   if (error)
     return (
-      <h1 className="error-message">
+      <Typography variant="h5" color="error">
         <ErrorComponent error={error} />
-      </h1>
+      </Typography>
     );
   return (
     <>
-      <section className="article-list">
-        <div className="selectors">
-          <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
-          <Order order={order} setOrder={setOrder} />
-        </div>
-        <Typography variant="h4" gutterBottom>
-          {topic || `Article List`}
-        </Typography>
-        {loading}
-        <ul>
-          {articleList.map((article) => {
-            return <ArticleCard article={article} key={article.article_id} />;
-          })}
-        </ul>
-        <IncrementButton
-          setLimit={setLimit}
-          name={`Articles`}
-          isLoading={isLoading}
-          hideIncButton={hideIncButton}
-        />
-      </section>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+        sx={{ mt: 3 }}
+      >
+        <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
+        <Order order={order} setOrder={setOrder} />
+      </Stack>
+      <Typography variant="h4" gutterBottom sx={{ pt: 2 }}>
+        {topic || `Article List`}
+      </Typography>
+      {loading}
+      <List>
+        {articleList.map((article) => {
+          return <ArticleCard article={article} key={article.article_id} />;
+        })}
+      </List>
+      <IncrementButton
+        setLimit={setLimit}
+        name={`Articles`}
+        isLoading={isLoading}
+        hideIncButton={hideIncButton}
+      />
     </>
   );
 }
