@@ -40,8 +40,10 @@ export default function CommentList({ articleId }) {
       </Typography>
     );
   return (
-    <Box>
-      <Typography variant="h4">Comments</Typography>
+    <Box sx={{ justifyContent: "center" }}>
+      <Typography variant="h4" mt={5}>
+        Comments
+      </Typography>
       {loading}
       <List>
         {commentList.map((comment) => {
