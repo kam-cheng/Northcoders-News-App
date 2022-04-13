@@ -5,6 +5,8 @@ import handleErrorMessage from "../utils/handle-error-message";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
@@ -26,7 +28,7 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
   const maxUpVotes = votes + 1;
   const maxDownVotes = votes - 1;
   let textColour = "inherit";
-  // let disableUpButton = voteTotal >= maxUpVotes ? true : false;
+
   let disableUpButton;
   let disableDownButton;
   if (voteTotal >= maxUpVotes) {
@@ -40,12 +42,13 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
 
   if (error)
     return (
-      <h3 className="error-message">
+      <Typography variant="h3">
         <ErrorComponent error={error} />
-      </h3>
+      </Typography>
     );
   return (
-    <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
+    // <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
+    <Box>
       <IconButton
         aria-label="thumb-up"
         onClick={() => {
@@ -55,7 +58,7 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
       >
         <ThumbUpOutlinedIcon />
       </IconButton>
-      {voteTotal}
+      <Typography variant="body1">{voteTotal}</Typography>
       <IconButton
         aria-label="thumb-down"
         className="vote-button"
@@ -66,6 +69,7 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
       >
         <ThumbDownOutlinedIcon />
       </IconButton>
-    </div>
+    </Box>
+    // </div>
   );
 }

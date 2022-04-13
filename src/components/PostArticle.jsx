@@ -8,6 +8,7 @@ import { UserContext } from "../contexts/User";
 import { useNavigate } from "react-router-dom";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import Typography from "@mui/material/Typography";
 
 export default function PostArticle() {
   const {
@@ -39,16 +40,16 @@ export default function PostArticle() {
 
   if (error)
     return (
-      <h3 className="error-message">
+      <Typography variant="h3">
         <ErrorComponent error={error} />
-      </h3>
+      </Typography>
     );
   return (
     <>
       <section className="article-form">
         <form onSubmit={handleSubmit} className="article-form">
           <label>
-            <h2>Post New Article</h2>
+            <Typography variant="h2">Post New Article</Typography>
             <Stack
               direction="column"
               justifyContent="center"
