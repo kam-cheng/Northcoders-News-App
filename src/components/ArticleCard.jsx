@@ -32,7 +32,7 @@ export default function ArticleCard({
 
   if (deletedArticle) return [deletedArticle];
   return (
-    <ListItem>
+    <ListItem disablePadding>
       <Card
         sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
         align="center"
