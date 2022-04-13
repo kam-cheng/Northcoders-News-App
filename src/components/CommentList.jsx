@@ -4,6 +4,7 @@ import CommentItem from "./CommentItem";
 import IncrementButton from "./IncrementButton";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import { Box, List, Typography } from "@mui/material";
 
 export default function CommentList({ articleId }) {
   const [commentList, setCommentList] = useState([]);
@@ -31,28 +32,28 @@ export default function CommentList({ articleId }) {
     loadComments();
   }, [articleId, limit]);
   let loading = "";
-  if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+  if (isLoading) loading = <Typography variant="body1">Loading...</Typography>;
   if (error)
     return (
-      <h2 className="error-message">
+      <Typography variant="h5" color="error">
         <ErrorComponent error={error} />
-      </h2>
+      </Typography>
     );
   return (
-    <section className="comment-list">
-      <h3>Comments</h3>
+    <Box>
+      <Typography variant="h4">Comments</Typography>
       {loading}
-      <ul>
+      <List>
         {commentList.map((comment) => {
           return <CommentItem comment={comment} key={comment.comment_id} />;
         })}
-      </ul>
+      </List>
       <IncrementButton
         setLimit={setLimit}
         name={`Comments`}
         isLoading={isLoading}
         hideIncButton={hideIncButton}
       />
-    </section>
+    </Box>
   );
 }
