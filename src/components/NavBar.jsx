@@ -122,6 +122,7 @@ export default function NavBar(props) {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
+            <Toolbar />
             {props.children}
           </Box>
         </Box>
