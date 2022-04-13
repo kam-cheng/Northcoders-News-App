@@ -6,7 +6,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 export default function VoteButton({ articleId, commentId, votes, size }) {
   const [voteTotal, setVotes] = useState(votes);
@@ -42,13 +42,17 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
 
   if (error)
     return (
-      <Typography variant="h3">
+      <Typography variant="body" color="error">
         <ErrorComponent error={error} />
       </Typography>
     );
   return (
-    // <div className={`icon ${size}`} style={{ color: `${textColour}` }}>
-    <Box>
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      spacing={0}
+    >
       <IconButton
         aria-label="thumb-up"
         onClick={() => {
@@ -58,7 +62,9 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
       >
         <ThumbUpOutlinedIcon />
       </IconButton>
-      <Typography variant="body1">{voteTotal}</Typography>
+      <Typography variant="body1" sx={{ color: `${textColour}` }}>
+        {voteTotal}
+      </Typography>
       <IconButton
         aria-label="thumb-down"
         className="vote-button"
@@ -69,7 +75,6 @@ export default function VoteButton({ articleId, commentId, votes, size }) {
       >
         <ThumbDownOutlinedIcon />
       </IconButton>
-    </Box>
-    // </div>
+    </Stack>
   );
 }
