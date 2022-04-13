@@ -52,7 +52,7 @@ export default function ArticleItem() {
   return (
     <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
       <Box sx={{ m: 4 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom fontWeight={"bold"}>
           {articleItem.title}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
@@ -65,7 +65,7 @@ export default function ArticleItem() {
           {dayjs(articleItem.created_at).toString()}
         </Typography>
         <Divider sx={{ mt: 2, mb: 4 }} />
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" gutterBottom sx={{ lineHeight: 2 }}>
           {articleItem.body}
         </Typography>
         <Stack
