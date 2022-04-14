@@ -9,6 +9,19 @@ import PostArticle from "./components/PostArticle";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
 import Box from "@mui/material/Box";
+import { createTheme, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#326177",
+    },
+    secondary: {
+      main: "#795548",
+    },
+  },
+});
 
 function App() {
   const [user, setUser] = useState({
@@ -21,18 +34,20 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <NavBar>
-          <Box sx={{ minHeight: "75vh" }}>
-            <Routes>
-              <Route path="/" element={<ArticleList />} />
-              <Route path="/topics/:topic" element={<ArticleList />} />
-              <Route path="/articles/:article_id" element={<ArticleItem />} />
-              <Route path="/articles/submit" element={<PostArticle />} />
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          </Box>
-          <Footer />
-        </NavBar>
+        <ThemeProvider theme={theme}>
+          <NavBar>
+            <Box sx={{ minHeight: "85vh" }}>
+              <Routes>
+                <Route path="/" element={<ArticleList />} />
+                <Route path="/topics/:topic" element={<ArticleList />} />
+                <Route path="/articles/:article_id" element={<ArticleItem />} />
+                <Route path="/articles/submit" element={<PostArticle />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Routes>
+            </Box>
+            <Footer />
+          </NavBar>
+        </ThemeProvider>
       </UserContext.Provider>
     </BrowserRouter>
   );
