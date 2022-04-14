@@ -32,7 +32,7 @@ export default function ArticleCard({
   if (deletedArticle) return [deletedArticle];
   return (
     <Grid item xs={12} md={6} lg={4} xl={3}>
-      <Card sx={{ margin: "20px", maxWidth: 400 }} align="center">
+      <Card sx={{ margin: "20px", maxWidth: 400 }} align="center" elevation={3}>
         <CardActionArea>
           <CardContent>
             <Typography
@@ -53,7 +53,12 @@ export default function ArticleCard({
               >
                 {author}
               </Typography>
-              <Typography variant="h5" gutterBottom color="text.primary">
+              <Typography
+                variant="h5"
+                gutterBottom
+                color="text.primary"
+                fontWeight={600}
+              >
                 {title}
               </Typography>
               <Typography
@@ -63,7 +68,7 @@ export default function ArticleCard({
               >
                 {topic}
               </Typography>
-              <Typography variant="body2">
+              <Typography variant="body2" color="text.secondary">
                 {dayjs(created_at).toString()}
               </Typography>
             </Link>

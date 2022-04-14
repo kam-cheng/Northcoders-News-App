@@ -52,20 +52,30 @@ export default function ArticleItem() {
   return (
     <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
       <Box sx={{ m: 4 }}>
-        <Typography variant="h4" gutterBottom fontWeight={"bold"}>
+        <Typography
+          variant="h4"
+          gutterBottom
+          fontWeight="bold"
+          textAlign="center"
+        >
           {articleItem.title}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="subtitle2" gutterBottom textAlign="center">
           by: {articleItem.author}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography variant="subtitle2" gutterBottom textAlign="center">
           Topic : {articleItem.topic}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom>
+        <Typography variant="subtitle2" gutterBottom textAlign="center">
           {dayjs(articleItem.created_at).toString()}
         </Typography>
         <Divider sx={{ mt: 2, mb: 4 }} />
-        <Typography variant="body1" gutterBottom sx={{ lineHeight: 2 }}>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ lineHeight: 2 }}
+          textAlign="justify"
+        >
           {articleItem.body}
         </Typography>
         <Stack
@@ -96,8 +106,8 @@ export default function ArticleItem() {
             size={"large"}
           />
         </Stack>
+        <PostComment articleId={articleItem.article_id} />
       </Box>
-      <PostComment articleId={articleItem.article_id} />
       <CommentList articleId={articleItem.article_id} />
     </Box>
   );

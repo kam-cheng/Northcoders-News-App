@@ -40,9 +40,9 @@ export default function PostComment({ articleId }) {
   let displayComment = null;
   if (postedComment)
     displayComment = (
-      <ul className="new-comment">
+      <Box mt={5}>
         <CommentItem comment={postedComment} />
-      </ul>
+      </Box>
     );
 
   if (error)
@@ -53,7 +53,7 @@ export default function PostComment({ articleId }) {
     );
   if (isLoading) return <p>Submitting Message...</p>;
   return (
-    <Box maxWidth={600} sx={{ ml: "auto", mr: "auto" }}>
+    <Box maxWidth={600} sx={{ ml: "auto", mr: "auto", mt: 5 }}>
       <form onSubmit={handleSubmit} className="post-form">
         <Stack
           direction="column"

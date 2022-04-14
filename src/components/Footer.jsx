@@ -15,6 +15,7 @@ export default function Footer() {
           backgroundColor: "primary.dark",
           color: "white",
           p: 3,
+          mt: 3,
         }}
       >
         <Grid item>

@@ -77,7 +77,7 @@ export default function ArticleList() {
         justifyContent="center"
         alignItems="center"
         spacing={1}
-        sx={{ mt: 3 }}
+        sx={{ mt: 5, ml: 1, mr: 1, mb: 2 }}
       >
         <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
         <Order order={order} setOrder={setOrder} />
@@ -89,22 +89,25 @@ export default function ArticleList() {
           textTransform: "capitalize",
           fontWeight: 500,
           textAlign: "center",
+          mb: 3,
         }}
       >
         {topic || `Article List`}
       </Typography>
       {loading}
-      <Grid
-        container
-        spacing={3}
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="flex-start"
-      >
-        {articleList.map((article) => {
-          return <ArticleCard article={article} key={article.article_id} />;
-        })}
-      </Grid>
+      <Box maxWidth="xl" alignSelf="center">
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+        >
+          {articleList.map((article) => {
+            return <ArticleCard article={article} key={article.article_id} />;
+          })}
+        </Grid>
+      </Box>
       <IncrementButton
         setLimit={setLimit}
         name={`Articles`}

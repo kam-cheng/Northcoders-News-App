@@ -25,6 +25,7 @@ export default function CommentItem({
       <Card
         sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
         align="center"
+        elevation={3}
       >
         <CardContent>
           <Typography

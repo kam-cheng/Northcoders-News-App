@@ -46,10 +46,14 @@ export default function PostArticle() {
       </Typography>
     );
   return (
-    <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
+    <Box maxWidth={1000}>
       <form onSubmit={handleSubmit}>
         <Box m={3}>
-          <Typography variant="h4" gutterBottom sx={{ pt: 2, fontWeight: 500 }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{ pt: 2, fontWeight: 500, textAlign: "center" }}
+          >
             Post New Article
           </Typography>
           <Stack
