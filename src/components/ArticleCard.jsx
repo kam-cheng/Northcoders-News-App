@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteArticle } from "../utils/api";
-import "./ArticleCard.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -43,7 +42,10 @@ export default function ArticleCard({
             >
               <ErrorComponent error={error} />
             </Typography>
-            <Link to={`/articles/${article_id}`} className="article-link">
+            <Link
+              to={`/articles/${article_id}`}
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
               <Typography
                 variant="subtitle2"
                 color="text.secondary"
@@ -71,7 +73,10 @@ export default function ArticleCard({
               alignItems="center"
               spacing={1}
             >
-              <Link to={`/articles/${article_id}`} className="article-link">
+              <Link
+                to={`/articles/${article_id}`}
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
                 <Button
                   variant="text"
                   startIcon={<CommentOutlinedIcon fontSize="small" />}
