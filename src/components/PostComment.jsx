@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./PostComment.css";
 import { addComment } from "../utils/api";
 import CommentItem from "./CommentItem";
 import { useContext } from "react";
