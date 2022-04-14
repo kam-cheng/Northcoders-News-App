@@ -46,7 +46,7 @@ export default function PostArticle() {
       </Typography>
     );
   return (
-    <Box maxWidth={1000}>
+    <Box maxWidth={1000} sx={{ mr: "auto", ml: "auto" }}>
       <form onSubmit={handleSubmit}>
         <Box m={3}>
           <Typography
