@@ -1,7 +1,5 @@
 import LoadingButton from "@mui/lab/LoadingButton";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 
 export default function IncrementButton({
   setLimit,

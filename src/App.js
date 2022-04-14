@@ -36,7 +36,7 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <ThemeProvider theme={theme}>
           <NavBar>
-            <Box sx={{ minHeight: "85vh" }}>
+            <Box sx={{ minHeight: "82vh" }}>
               <Routes>
                 <Route path="/" element={<ArticleList />} />
                 <Route path="/topics/:topic" element={<ArticleList />} />
