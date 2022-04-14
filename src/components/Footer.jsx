@@ -1,4 +1,4 @@
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid, Button, Stack } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
@@ -14,7 +14,7 @@ export default function Footer() {
         sx={{
           backgroundColor: "primary.dark",
           color: "white",
-          p: 5,
+          p: 3,
         }}
       >
         <Grid item>
@@ -23,30 +23,37 @@ export default function Footer() {
           </Typography>
         </Grid>
         <Grid item>
-          <Button
-            href="mailto:kamcheng@hotmail.co.uk"
-            startIcon={<EmailIcon fontSize="large" />}
-            size="large"
-            color="inherit"
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            spacing={1}
           >
-            Email
-          </Button>
-          <Button
-            href="https://www.linkedin.com/in/kam-cheng/"
-            startIcon={<LinkedInIcon fontSize="large" />}
-            size="large"
-            color="inherit"
-          >
-            LinkedIn
-          </Button>
-          <Button
-            href="https://github.com/kam-cheng/"
-            startIcon={<GitHubIcon fontSize="large" />}
-            size="large"
-            color="inherit"
-          >
-            Github
-          </Button>
+            <Button
+              href="mailto:kamcheng@hotmail.co.uk"
+              startIcon={<EmailIcon fontSize="large" />}
+              size="large"
+              color="inherit"
+            >
+              Email
+            </Button>
+            <Button
+              href="https://www.linkedin.com/in/kam-cheng/"
+              startIcon={<LinkedInIcon fontSize="large" />}
+              size="large"
+              color="inherit"
+            >
+              LinkedIn
+            </Button>
+            <Button
+              href="https://github.com/kam-cheng/"
+              startIcon={<GitHubIcon fontSize="large" />}
+              size="large"
+              color="inherit"
+            >
+              Github
+            </Button>
+          </Stack>
         </Grid>
       </Grid>
     </footer>

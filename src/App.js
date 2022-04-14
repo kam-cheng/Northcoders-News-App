@@ -8,6 +8,7 @@ import { UserContext } from "./contexts/User";
 import PostArticle from "./components/PostArticle";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
+import Box from "@mui/material/Box";
 
 function App() {
   const [user, setUser] = useState({
@@ -21,13 +22,15 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
         <NavBar>
-          <Routes>
-            <Route path="/" element={<ArticleList />} />
-            <Route path="/topics/:topic" element={<ArticleList />} />
-            <Route path="/articles/:article_id" element={<ArticleItem />} />
-            <Route path="/articles/submit" element={<PostArticle />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
+          <Box sx={{ minHeight: "75vh" }}>
+            <Routes>
+              <Route path="/" element={<ArticleList />} />
+              <Route path="/topics/:topic" element={<ArticleList />} />
+              <Route path="/articles/:article_id" element={<ArticleItem />} />
+              <Route path="/articles/submit" element={<PostArticle />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </Box>
           <Footer />
         </NavBar>
       </UserContext.Provider>
