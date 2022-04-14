@@ -43,12 +43,7 @@ export default function ArticleItem() {
         <ErrorComponent error={error} />
       </Typography>
     );
-  if (deletedArticle)
-    return (
-      <Typography variant="h5" color="success">
-        {deletedArticle}
-      </Typography>
-    );
+  if (deletedArticle) return <Box m={5}>{deletedArticle}</Box>;
   return (
     <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
       <Box sx={{ m: 4 }}>
