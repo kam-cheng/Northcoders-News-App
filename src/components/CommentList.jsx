@@ -4,7 +4,7 @@ import CommentItem from "./CommentItem";
 import IncrementButton from "./IncrementButton";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
-import { Box, List, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 export default function CommentList({ articleId }) {
   const [commentList, setCommentList] = useState([]);
@@ -45,11 +45,17 @@ export default function CommentList({ articleId }) {
         Comments
       </Typography>
       {loading}
-      <List>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+      >
         {commentList.map((comment) => {
           return <CommentItem comment={comment} key={comment.comment_id} />;
         })}
-      </List>
+      </Grid>
       <IncrementButton
         setLimit={setLimit}
         name={`Comments`}

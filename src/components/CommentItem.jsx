@@ -6,11 +6,11 @@ import DeleteButton from "./DeleteButton";
 import ErrorComponent from "./ErrorComponent";
 import {
   Divider,
-  ListItem,
   Stack,
   Typography,
   Card,
   CardContent,
+  Grid,
 } from "@mui/material";
 
 export default function CommentItem({
@@ -21,7 +21,7 @@ export default function CommentItem({
 
   if (deletedComment) return [deletedComment];
   return (
-    <ListItem>
+    <Grid item xs={12} md={6}>
       <Card
         sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
         align="center"
@@ -72,6 +72,6 @@ export default function CommentItem({
           </Stack>
         </CardContent>
       </Card>
-    </ListItem>
+    </Grid>
   );
 }
