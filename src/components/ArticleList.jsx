@@ -10,6 +10,8 @@ import ErrorComponent from "./ErrorComponent";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -53,12 +55,13 @@ export default function ArticleList() {
   useEffect(() => {
     loadArticles();
   }, [limit, topic, sortBy, order]);
+
   let loading = "";
   if (isLoading)
     loading = (
-      <Typography variant="h5" gutterBottom sx={{ textAlign: "center" }}>
-        Loading Articles...
-      </Typography>
+      <Box sx={{ display: "flex", alignSelf: "center" }}>
+        <CircularProgress />
+      </Box>
     );
 
   if (error)

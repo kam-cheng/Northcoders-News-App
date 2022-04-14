@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 export default function ErrorPage() {
   return (
     <Box m={10}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" textAlign="center" gutterBottom>
         Oops...looks like you are at the wrong page!
       </Typography>
       <Button>
