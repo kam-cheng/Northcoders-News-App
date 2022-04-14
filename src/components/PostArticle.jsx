@@ -1,7 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/User";
 import { useNavigate } from "react-router-dom";
 import { addArticle } from "../utils/api";
+import { fetchTopics } from "../utils/api";
 import TextField from "@mui/material/TextField";
 import EmailIcon from "@mui/icons-material/Email";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -10,6 +11,10 @@ import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 export default function PostArticle() {
   const {
@@ -20,8 +25,18 @@ export default function PostArticle() {
   const [topic, setTopic] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [topicList, setTopicList] = useState([]);
 
   const navigate = useNavigate();
+
+  //fetch topics list
+  const getTopics = async () => {
+    const topicsItems = await fetchTopics();
+    setTopicList(topicsItems);
+  };
+  useEffect(() => {
+    getTopics();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +61,7 @@ export default function PostArticle() {
       </Typography>
     );
   return (
-    <Box maxWidth={1000} sx={{ mr: "auto", ml: "auto" }}>
+    <Box maxWidth={1000} sx={{ m: "auto" }}>
       <form onSubmit={handleSubmit}>
         <Box m={3}>
           <Typography
@@ -60,8 +75,8 @@ export default function PostArticle() {
             direction="column"
             justifyContent="center"
             alignItems="stretch"
-            spacing={2}
-            sx={{ mt: 4 }}
+            spacing={4}
+            sx={{ mt: 5 }}
           >
             <TextField
               size="medium"
@@ -73,16 +88,29 @@ export default function PostArticle() {
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
-            <TextField
-              size="medium"
-              disabled={isLoading}
-              required
-              id="standard-required"
-              label="Topic"
-              variant="filled"
-              value={topic}
-              onChange={(event) => setTopic(event.target.value)}
-            />
+            <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel
+                id="demo-simple-select-filled-label"
+                required
+                disabled={isLoading}
+              >
+                Topic
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                value={topic}
+                onChange={(event) => setTopic(event.target.value)}
+              >
+                {topicList.map(({ slug }) => {
+                  return (
+                    <MenuItem value={slug} key={slug}>
+                      {slug}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
             <TextField
               size="medium"
               disabled={isLoading}
