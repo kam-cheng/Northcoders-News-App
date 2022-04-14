@@ -20,20 +20,16 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <div className="App">
-          <div className="main">
-            <NavBar>
-              <Routes>
-                <Route path="/" element={<ArticleList />} />
-                <Route path="/topics/:topic" element={<ArticleList />} />
-                <Route path="/articles/:article_id" element={<ArticleItem />} />
-                <Route path="/articles/submit" element={<PostArticle />} />
-                <Route path="*" element={<ErrorPage />} />
-              </Routes>
-              <Footer />
-            </NavBar>
-          </div>
-        </div>
+        <NavBar>
+          <Routes>
+            <Route path="/" element={<ArticleList />} />
+            <Route path="/topics/:topic" element={<ArticleList />} />
+            <Route path="/articles/:article_id" element={<ArticleItem />} />
+            <Route path="/articles/submit" element={<PostArticle />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+          <Footer />
+        </NavBar>
       </UserContext.Provider>
     </BrowserRouter>
   );

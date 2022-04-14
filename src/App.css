@@ -3,21 +3,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  position: relative;
-  min-height: 100vh;
-}
-
-.main {
-  min-height: 93vh;
-}
-
-.App {
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  color: #222327;
-  background-color: #eef0f2;
-  font-size: 16px;
-  line-height: 1.25;
-}
