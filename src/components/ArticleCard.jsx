@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { deleteArticle } from "../utils/api";
 import "./ArticleCard.css";
 import Stack from "@mui/material/Stack";
-import ListItem from "@mui/material/ListItem";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,6 +13,7 @@ import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import VoteButton from "./VoteButton";
 import DeleteButton from "./DeleteButton";
 import ErrorComponent from "./ErrorComponent";
+import Grid from "@mui/material/Grid";
 
 export default function ArticleCard({
   article: {
@@ -32,11 +32,8 @@ export default function ArticleCard({
 
   if (deletedArticle) return [deletedArticle];
   return (
-    <ListItem disablePadding>
-      <Card
-        sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
-        align="center"
-      >
+    <Grid item xs={12} md={6} lg={4} xl={3}>
+      <Card sx={{ margin: "20px", maxWidth: 400 }} align="center">
         <CardActionArea>
           <CardContent>
             <Typography
@@ -97,6 +94,6 @@ export default function ArticleCard({
           </CardContent>
         </CardActionArea>
       </Card>
-    </ListItem>
+    </Grid>
   );
 }

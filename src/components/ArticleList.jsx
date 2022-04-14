@@ -3,14 +3,13 @@ import { fetchArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard.jsx";
 import IncrementButton from "./IncrementButton";
 import { useParams } from "react-router-dom";
-import "./ArticleList.css";
 import SortedBy from "./SortedBy";
 import Order from "./Order";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 export default function ArticleList() {
   const { topic } = useParams();
@@ -80,15 +79,24 @@ export default function ArticleList() {
         <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
         <Order order={order} setOrder={setOrder} />
       </Stack>
-      <Typography variant="h4" sx={{ pt: 2, textTransform: "capitalize" }}>
+      <Typography
+        variant="h4"
+        sx={{ pt: 2, textTransform: "capitalize", fontWeight: 500 }}
+      >
         {topic || `Article List`}
       </Typography>
       {loading}
-      <List>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+      >
         {articleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
-      </List>
+      </Grid>
       <IncrementButton
         setLimit={setLimit}
         name={`Articles`}
