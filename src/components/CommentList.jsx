@@ -39,11 +39,18 @@ export default function CommentList({ articleId }) {
         <ErrorComponent error={error} />
       </Typography>
     );
-  return (
-    <Stack sx={{ justifyContent: "center" }}>
+
+  let comments = "";
+  if (commentList.length !== 0)
+    comments = (
       <Typography variant="h4" mt={5} sx={{ textAlign: "center" }}>
         Comments
       </Typography>
+    );
+
+  return (
+    <Stack sx={{ justifyContent: "center" }}>
+      {comments}
       {loading}
       <Grid
         container
