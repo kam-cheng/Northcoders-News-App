@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import handleErrorMessage from "../utils/handle-error-message";
-import "./DeleteButton.css";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import IconButton from "@mui/material/IconButton";
 
