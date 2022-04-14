@@ -35,7 +35,7 @@ export default function IncrementButton({
       onClick={() => {
         incrementLimit(5);
       }}
-      sx={{ mb: 4 }}
+      sx={{ mb: 4, width: "auto", alignSelf: "center" }}
     >
       {buttonText}
     </LoadingButton>

@@ -4,7 +4,7 @@ import CommentItem from "./CommentItem";
 import IncrementButton from "./IncrementButton";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
-import { Box, Grid, Typography } from "@mui/material";
+import { Stack, Grid, Typography } from "@mui/material";
 
 export default function CommentList({ articleId }) {
   const [commentList, setCommentList] = useState([]);
@@ -40,8 +40,8 @@ export default function CommentList({ articleId }) {
       </Typography>
     );
   return (
-    <Box sx={{ justifyContent: "center" }}>
-      <Typography variant="h4" mt={5}>
+    <Stack sx={{ justifyContent: "center" }}>
+      <Typography variant="h4" mt={5} sx={{ textAlign: "center" }}>
         Comments
       </Typography>
       {loading}
@@ -62,6 +62,6 @@ export default function CommentList({ articleId }) {
         isLoading={isLoading}
         hideIncButton={hideIncButton}
       />
-    </Box>
+    </Stack>
   );
 }

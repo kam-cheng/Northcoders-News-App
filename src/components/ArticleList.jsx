@@ -56,19 +56,19 @@ export default function ArticleList() {
   let loading = "";
   if (isLoading)
     loading = (
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{ textAlign: "center" }}>
         Loading Articles...
       </Typography>
     );
 
   if (error)
     return (
-      <Typography variant="h5" color="error">
+      <Typography variant="h5" color="error" sx={{ textAlign: "center" }}>
         <ErrorComponent error={error} />
       </Typography>
     );
   return (
-    <>
+    <Stack justifyContent="center">
       <Stack
         direction="row"
         justifyContent="center"
@@ -81,7 +81,12 @@ export default function ArticleList() {
       </Stack>
       <Typography
         variant="h4"
-        sx={{ pt: 2, textTransform: "capitalize", fontWeight: 500 }}
+        sx={{
+          pt: 2,
+          textTransform: "capitalize",
+          fontWeight: 500,
+          textAlign: "center",
+        }}
       >
         {topic || `Article List`}
       </Typography>
@@ -103,6 +108,6 @@ export default function ArticleList() {
         isLoading={isLoading}
         hideIncButton={hideIncButton}
       />
-    </>
+    </Stack>
   );
 }
