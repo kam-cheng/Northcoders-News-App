@@ -37,108 +37,104 @@ export default function NavBar(props) {
   const { user } = useContext(UserContext);
 
   return (
-    <header>
-      <nav>
-        <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-          <AppBar
-            position="fixed"
-            sx={{
-              width: { sm: `calc(100% - ${drawerWidth}px)` },
-              ml: { sm: `${drawerWidth}px` },
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button
+            color="inherit"
+            variant="text"
+            onClick={() => {
+              navigate("/");
             }}
           >
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: "none" } }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Button
-                color="inherit"
-                variant="text"
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                <Typography variant="h6" noWrap component="div">
-                  NC News
-                </Typography>
-              </Button>
-              <Box sx={{ flexGrow: 1 }} />
-              <IconButton
-                onClick={() => {
-                  navigate("/user");
-                }}
-              >
-                <Avatar alt={user.name} src={user.avatar_url} />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <Box
-            component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="drawer items"
-          >
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-            {/* Display drawer temporarily on smaller screens*/}
-            <Drawer
-              container={container}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-              sx={{
-                display: { xs: "block", sm: "none" },
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: drawerWidth,
-                },
-              }}
-            >
-              <SideDrawer
-                handleDrawerToggle={handleDrawerToggle}
-                handleClick={handleClick}
-                open={open}
-              />
-            </Drawer>
-            {/* Display drawer permanently on larger screens  */}
-            <Drawer
-              variant="permanent"
-              sx={{
-                display: { xs: "none", sm: "block" },
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: drawerWidth,
-                },
-              }}
-              open
-            >
-              <SideDrawer
-                handleDrawerToggle={handleDrawerToggle}
-                handleClick={handleClick}
-                open={open}
-              />
-            </Drawer>
-          </Box>
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              width: { sm: `calc(100% - ${drawerWidth}px)` },
+            <Typography variant="h6" noWrap component="div">
+              NC News
+            </Typography>
+          </Button>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton
+            onClick={() => {
+              navigate("/user");
             }}
           >
-            <Toolbar />
-            {props.children}
-          </Box>
-        </Box>
-      </nav>
-    </header>
+            <Avatar alt={user.name} src={user.avatar_url} />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="drawer items"
+      >
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        {/* Display drawer temporarily on smaller screens*/}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          <SideDrawer
+            handleDrawerToggle={handleDrawerToggle}
+            handleClick={handleClick}
+            open={open}
+          />
+        </Drawer>
+        {/* Display drawer permanently on larger screens  */}
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+          open
+        >
+          <SideDrawer
+            handleDrawerToggle={handleDrawerToggle}
+            handleClick={handleClick}
+            open={open}
+          />
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar />
+        {props.children}
+      </Box>
+    </Box>
   );
 }
