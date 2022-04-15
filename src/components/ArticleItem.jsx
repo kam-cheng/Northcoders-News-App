@@ -52,23 +52,39 @@ export default function ArticleItem() {
           gutterBottom
           fontWeight="bold"
           textAlign="center"
+          sx={{ m: { md: 3 } }}
         >
           {articleItem.title}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom textAlign="center">
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
           by: {articleItem.author}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom textAlign="center">
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
           Topic : {articleItem.topic}
         </Typography>
-        <Typography variant="subtitle2" gutterBottom textAlign="center">
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
           {dayjs(articleItem.created_at).format("dddd D MMMM YYYY h:mm A")}
         </Typography>
         <Divider sx={{ mt: 2, mb: 4 }} />
         <Typography
           variant="body1"
           gutterBottom
-          sx={{ lineHeight: 2 }}
+          sx={{ lineHeight: 2, m: { md: 3 } }}
           textAlign="justify"
         >
           {articleItem.body}

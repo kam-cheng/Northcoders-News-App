@@ -44,6 +44,7 @@ export default function NavBar(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          height: { md: 100 },
         }}
       >
         <Toolbar>
@@ -63,7 +64,12 @@ export default function NavBar(props) {
               navigate("/");
             }}
           >
-            <Typography variant="h6" noWrap component="div">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ fontSize: { md: "4rem" }, fontWeight: { md: "300" } }}
+            >
               NC News
             </Typography>
           </Button>
@@ -73,7 +79,11 @@ export default function NavBar(props) {
               navigate("/user");
             }}
           >
-            <Avatar alt={user.name} src={user.avatar_url} />
+            <Avatar
+              alt={user.name}
+              src={user.avatar_url}
+              sx={{ width: { md: 80 }, height: { md: 80 } }}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>

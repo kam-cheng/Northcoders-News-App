@@ -87,8 +87,9 @@ export default function PostArticle() {
               variant="filled"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
+              sx={{ mt: { md: 3 } }}
             />
-            <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+            <FormControl variant="filled" sx={{ minWidth: 120, m: 1 }}>
               <InputLabel
                 id="demo-simple-select-filled-label"
                 required

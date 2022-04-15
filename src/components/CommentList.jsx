@@ -43,7 +43,11 @@ export default function CommentList({ articleId }) {
   let comments = "";
   if (commentList.length !== 0)
     comments = (
-      <Typography variant="h4" mt={5} sx={{ textAlign: "center" }}>
+      <Typography
+        variant="h4"
+        mt={5}
+        sx={{ textAlign: "center", m: { md: 5 } }}
+      >
         Comments
       </Typography>
     );

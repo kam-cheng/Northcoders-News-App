@@ -73,6 +73,7 @@ export default function PostComment({ articleId }) {
             value={newComment}
             minRows={4}
             onChange={(event) => setNewComment(event.target.value)}
+            sx={{ m: { md: 3 } }}
           ></TextField>
           <Button
             size="medium"
