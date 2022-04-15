@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
-import "./ErrorPage.css";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 export default function ErrorPage() {
   return (
-    <>
-      <h3 className="errorpage-message">
-        Oops...looks like you are at the wrong page!
-      </h3>
-      <Link to="/">
-        <h3 className="errorpage-message">Go Back to HomePage</h3>
-      </Link>
-    </>
+    <Box m={5}>
+      <Typography variant="h6" textAlign="center" gutterBottom>
+        Oops...looks like you are not meant to be here!
+      </Typography>
+      <Button>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Typography variant="h5">Go Back to HomePage</Typography>
+        </Link>
+      </Button>
+    </Box>
   );
 }

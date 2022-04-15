@@ -4,12 +4,14 @@ import CommentItem from "./CommentItem";
 import IncrementButton from "./IncrementButton";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import { Stack, Grid, Typography } from "@mui/material";
 
 export default function CommentList({ articleId }) {
   const [commentList, setCommentList] = useState([]);
   const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hideIncButton, sethideIncButton] = useState(false);
 
   const loadComments = async () => {
     try {
@@ -17,6 +19,7 @@ export default function CommentList({ articleId }) {
       const comments = await fetchComments(limit, articleId);
       setCommentList(comments);
       setIsLoading(false);
+      if (limit > comments.length) sethideIncButton(true);
     } catch (err) {
       setIsLoading(false);
       const customMessage =
@@ -29,28 +32,47 @@ export default function CommentList({ articleId }) {
     loadComments();
   }, [articleId, limit]);
   let loading = "";
-  if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+  if (isLoading) loading = <Typography variant="body1">Loading...</Typography>;
   if (error)
     return (
-      <h2 className="error-message">
+      <Typography variant="h5" color="error">
         <ErrorComponent error={error} />
-      </h2>
+      </Typography>
     );
+
+  let comments = "";
+  if (commentList.length !== 0)
+    comments = (
+      <Typography
+        variant="h4"
+        mt={5}
+        sx={{ textAlign: "center", m: { md: 5 } }}
+      >
+        Comments
+      </Typography>
+    );
+
   return (
-    <section className="comment-list">
-      <h3>Comments</h3>
+    <Stack sx={{ justifyContent: "center" }}>
+      {comments}
       {loading}
-      <ul>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+      >
         {commentList.map((comment) => {
           return <CommentItem comment={comment} key={comment.comment_id} />;
         })}
-      </ul>
+      </Grid>
       <IncrementButton
-        list={commentList}
         setLimit={setLimit}
-        limit={limit}
         name={`Comments`}
+        isLoading={isLoading}
+        hideIncButton={hideIncButton}
       />
-    </section>
+    </Stack>
   );
 }

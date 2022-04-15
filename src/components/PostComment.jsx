@@ -1,11 +1,12 @@
 import { useState } from "react";
-import "./PostComment.css";
 import { addComment } from "../utils/api";
 import CommentItem from "./CommentItem";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import { Box, Button, Stack, TextField } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
 
 export default function PostComment({ articleId }) {
   const [newComment, setNewComment] = useState("");
@@ -39,9 +40,9 @@ export default function PostComment({ articleId }) {
   let displayComment = null;
   if (postedComment)
     displayComment = (
-      <ul className="new-comment">
+      <Box mt={5}>
         <CommentItem comment={postedComment} />
-      </ul>
+      </Box>
     );
 
   if (error)
@@ -52,22 +53,41 @@ export default function PostComment({ articleId }) {
     );
   if (isLoading) return <p>Submitting Message...</p>;
   return (
-    <section className="post-comment">
+    <Box maxWidth={600} sx={{ ml: "auto", mr: "auto", mt: 5 }}>
       <form onSubmit={handleSubmit} className="post-form">
-        <label>
-          <textarea
-            className="comment-box"
-            placeholder="Post a Comment"
-            value={newComment}
-            onChange={(event) => setNewComment(event.target.value)}
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="stretch"
+          spacing={2}
+          sx={{ mt: 4 }}
+        >
+          <TextField
+            size="medium"
+            disabled={isLoading}
             required
-          />
-          <button className="increment-button" type="submit">
+            id="standard-multiline-static"
+            label="Post a Comment"
+            variant="filled"
+            multiline
+            value={newComment}
+            minRows={4}
+            onChange={(event) => setNewComment(event.target.value)}
+            sx={{ m: { md: 3 } }}
+          ></TextField>
+          <Button
+            size="medium"
+            type="submit"
+            endIcon={<EmailIcon />}
+            loading={isLoading}
+            loadingPosition="end"
+            variant="contained"
+          >
             Add Comment
-          </button>
-        </label>
+          </Button>
+        </Stack>
       </form>
       {displayComment}
-    </section>
+    </Box>
   );
 }

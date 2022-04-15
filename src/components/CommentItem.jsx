@@ -1,10 +1,17 @@
-import "./CommentItem.css";
-import VoteButton from "./VoteButton";
-import dayjs from "dayjs";
-import DeleteButton from "./DeleteButton";
 import { useState } from "react";
-import ErrorComponent from "./ErrorComponent";
 import { deleteComment } from "../utils/api";
+import dayjs from "dayjs";
+import VoteButton from "./VoteButton";
+import DeleteButton from "./DeleteButton";
+import ErrorComponent from "./ErrorComponent";
+import {
+  Divider,
+  Stack,
+  Typography,
+  Card,
+  CardContent,
+  Grid,
+} from "@mui/material";
 
 export default function CommentItem({
   comment: { comment_id, votes, created_at, author, body },
@@ -14,28 +21,58 @@ export default function CommentItem({
 
   if (deletedComment) return [deletedComment];
   return (
-    <li>
-      <article className="comment-item">
-        <p
-          className="error-message"
-          style={{ display: error ? "block" : "none" }}
-        >
-          <ErrorComponent error={error} />
-        </p>
-        <h4>{author}</h4>
-        <h5>{dayjs(created_at).toString()}</h5>
-        <p>{body}</p>
-        <VoteButton commentId={comment_id} votes={votes} size={"large"} />
-        <DeleteButton
-          itemId={comment_id}
-          setDeletedItem={setDeletedComment}
-          setError={setError}
-          author={author}
-          deleteApiFunction={deleteComment}
-          name={"Comment"}
-          size={"large"}
-        />
-      </article>
-    </li>
+    <Grid item xs={12} md={6}>
+      <Card
+        sx={{ minWidth: 340, margin: "20px", maxWidth: 450 }}
+        align="center"
+        elevation={3}
+      >
+        <CardContent>
+          <Typography
+            variant="body1"
+            color="error"
+            style={{ display: error ? "block" : "none" }}
+            gutterBottom
+          >
+            <ErrorComponent error={error} />
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            gutterBottom
+            sx={{ fontWeight: "bold" }}
+          >
+            {author}
+          </Typography>
+          <Typography
+            variant="subtitle2"
+            gutterBottom
+            sx={{ fontWeight: "medium" }}
+          >
+            {dayjs(created_at).format("ddd D MMM YYYY h:mm A")}
+          </Typography>
+          <Divider sx={{ mb: 1 }} />
+          <Typography variant="body1" gutterBottom>
+            {body}
+          </Typography>
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            spacing={1}
+          >
+            <VoteButton commentId={comment_id} votes={votes} size={"large"} />
+            <DeleteButton
+              itemId={comment_id}
+              setDeletedItem={setDeletedComment}
+              setError={setError}
+              author={author}
+              deleteApiFunction={deleteComment}
+              name={"Comment"}
+              size={"large"}
+            />
+          </Stack>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 }

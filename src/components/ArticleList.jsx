@@ -3,17 +3,22 @@ import { fetchArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard.jsx";
 import IncrementButton from "./IncrementButton";
 import { useParams } from "react-router-dom";
-import "./ArticleList.css";
 import SortedBy from "./SortedBy";
 import Order from "./Order";
 import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function ArticleList() {
   const { topic } = useParams();
   const [articleList, setArticleList] = useState([]);
   const [limit, setLimit] = useState(10);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hideIncButton, sethideIncButton] = useState(false);
   const [sortBy, setSortBy] = useState({
     name: "date",
     apiValue: "created_at",
@@ -37,6 +42,7 @@ export default function ArticleList() {
       );
       setArticleList(articles);
       setIsLoading(false);
+      if (limit > articles.length) sethideIncButton(true);
     } catch (err) {
       setIsLoading(false);
       const customMessage =
@@ -49,36 +55,65 @@ export default function ArticleList() {
   useEffect(() => {
     loadArticles();
   }, [limit, topic, sortBy, order]);
+
   let loading = "";
-  if (isLoading) loading = <p className="loading-bar">Loading...</p>;
+  if (isLoading)
+    loading = (
+      <Box sx={{ display: "flex", alignSelf: "center" }}>
+        <CircularProgress />
+      </Box>
+    );
 
   if (error)
     return (
-      <h1 className="error-message">
+      <Typography variant="h5" color="error" sx={{ textAlign: "center" }}>
         <ErrorComponent error={error} />
-      </h1>
+      </Typography>
     );
   return (
-    <>
-      <section className="article-list">
-        <div className="selectors">
-          <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
-          <Order order={order} setOrder={setOrder} />
-        </div>
-        <h2 className="title">{topic || `Article List`}</h2>
-        {loading}
-        <ul>
+    <Stack justifyContent="center">
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+        sx={{ mt: 5, ml: 1, mr: 1, mb: 2 }}
+      >
+        <SortedBy sortBy={sortBy} setSortBy={setSortBy} />
+        <Order order={order} setOrder={setOrder} />
+      </Stack>
+      <Typography
+        variant="h4"
+        sx={{
+          pt: 2,
+          textTransform: "capitalize",
+          fontWeight: 500,
+          textAlign: "center",
+          mb: 3,
+        }}
+      >
+        {topic || `Article List`}
+      </Typography>
+      {loading}
+      <Box maxWidth="xl" alignSelf="center">
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+        >
           {articleList.map((article) => {
             return <ArticleCard article={article} key={article.article_id} />;
           })}
-        </ul>
-        <IncrementButton
-          list={articleList}
-          setLimit={setLimit}
-          limit={limit}
-          name={`Articles`}
-        />
-      </section>
-    </>
+        </Grid>
+      </Box>
+      <IncrementButton
+        setLimit={setLimit}
+        name={`Articles`}
+        isLoading={isLoading}
+        hideIncButton={hideIncButton}
+      />
+    </Stack>
   );
 }

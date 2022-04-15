@@ -1,15 +1,23 @@
 import { useParams } from "react-router-dom";
-import { fetchArticle } from "../utils/api";
 import { useState, useEffect } from "react";
-import "./ArticleItem.css";
 import dayjs from "dayjs";
+import { fetchArticle } from "../utils/api";
+import { deleteArticle } from "../utils/api";
+import handleErrorMessage from "../utils/handle-error-message";
 import VoteButton from "./VoteButton";
 import CommentList from "./CommentList";
 import PostComment from "./PostComment";
-import handleErrorMessage from "../utils/handle-error-message";
 import ErrorComponent from "./ErrorComponent";
-import { deleteArticle } from "../utils/api";
 import DeleteButton from "./DeleteButton";
+import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -35,32 +43,72 @@ export default function ArticleItem() {
     loadArticle();
   }, [articleId]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error)
+  if (isLoading)
     return (
-      <h1 className="error-message">
-        <ErrorComponent error={error} />
-      </h1>
+      <Box sx={{ display: "flex", justifyContent: "center", pt: 4 }}>
+        <CircularProgress />
+      </Box>
     );
-  if (deletedArticle)
-    return <h2 className="heading-deleted">{deletedArticle}</h2>;
+  if (error) return <ErrorComponent error={error} />;
+  if (deletedArticle) return <Box m={5}>{deletedArticle}</Box>;
   return (
-    <>
-      <section className="article-page">
-        <article className="article-item">
-          <h2>{articleItem.title}</h2>
-          <h3>{articleItem.author}</h3>
-          <h4>Topic : {articleItem.topic}</h4>
-          <h4>{dayjs(articleItem.created_at).toString()}</h4>
-          <p>{articleItem.body}</p>
-          <div className="icon large">
-            <img
-              className="icon large"
-              src="/images/comment-icon.jpg"
-              alt="comments icon"
-            />
-            {articleItem.comment_count} Comments
-          </div>
+    <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
+      <Box sx={{ m: 4 }}>
+        <Typography
+          variant="h4"
+          gutterBottom
+          fontWeight={500}
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
+          {articleItem.title}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
+          by: {articleItem.author}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
+          Topic : {articleItem.topic}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          textAlign="center"
+          sx={{ m: { md: 3 } }}
+        >
+          {dayjs(articleItem.created_at).format("dddd D MMMM YYYY h:mm A")}
+        </Typography>
+        <Divider sx={{ mt: 2, mb: 4 }} />
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ lineHeight: 2, m: { md: 3 } }}
+          textAlign="justify"
+        >
+          {articleItem.body}
+        </Typography>
+        <Stack
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
+          spacing={1}
+          sx={{ mt: 3 }}
+        >
+          <Stack direction="row" spacing={1}>
+            <CommentOutlinedIcon fontSize="medium" />
+            <Typography variant="button">
+              {articleItem.comment_count} Comments
+            </Typography>
+          </Stack>
           <VoteButton
             articleId={articleItem.article_id}
             votes={articleItem.votes}
@@ -75,10 +123,10 @@ export default function ArticleItem() {
             name={"Article"}
             size={"large"}
           />
-        </article>
+        </Stack>
         <PostComment articleId={articleItem.article_id} />
-        <CommentList articleId={articleItem.article_id} />
-      </section>
-    </>
+      </Box>
+      <CommentList articleId={articleItem.article_id} />
+    </Box>
   );
 }

@@ -1,95 +1,150 @@
-import { useState, useEffect, useRef } from "react";
-import { fetchTopics } from "../utils/api";
-import { Link } from "react-router-dom";
-import "./NavBar.css";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/User";
+import SideDrawer from "./SideDrawer";
+import Button from "@mui/material/Button";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
-export default function NavBar() {
-  const node = useRef();
+// set width of side drawer
+const drawerWidth = 240;
+
+export default function NavBar(props) {
+  const navigate = useNavigate();
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [topics, setTopics] = useState([]);
 
-  //fetch topics list
-  const getTopics = async () => {
-    const topics = await fetchTopics();
-    setTopics(topics);
+  // opents drawer for mobile devices
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const handleClick = () => {
+    setOpen(!open);
   };
 
-  //run function on mount only
-  useEffect(() => {
-    getTopics();
-  }, []);
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
-  //toggle dropdown when clicked outside
-  function toggleDropdown() {
-    document.getElementById("navbar-myDropdown").classList.toggle("show");
-  }
-
-  const handleClickOutside = (e) => {
-    if (node.current.contains(e.target)) {
-      // inside click
-      return;
-    }
-    // outside click
-    toggleDropdown();
-    setOpen(false);
-  };
-
-  useEffect(() => {
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [open]);
+  // get user so we can display avatar
+  const { user } = useContext(UserContext);
 
   return (
-    <header>
-      <nav className="navbar">
-        <Link to="/" className="navbar-link">
-          Home
-        </Link>
-        <div className="navbar-dropdown">
-          <button
-            className="navbar-dropbtn"
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+          height: { md: 100 },
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button
+            color="inherit"
+            variant="text"
             onClick={() => {
-              setOpen(!open);
-              toggleDropdown();
+              navigate("/");
             }}
           >
-            Topics
-            <i className="fa fa-caret-down"></i>
-          </button>
-          <div
-            id="navbar-myDropdown"
-            className="navbar-dropdown-content"
-            ref={node}
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ fontSize: { md: "4rem" }, fontWeight: { md: "300" } }}
+            >
+              NC News
+            </Typography>
+          </Button>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton
             onClick={() => {
-              setOpen(!open);
-              toggleDropdown();
+              navigate("/user");
             }}
           >
-            {topics.map(({ slug }) => {
-              return (
-                <Link
-                  to={`topics/${slug}`}
-                  className="navbar-dropdown-link"
-                  key={slug}
-                >
-                  {slug}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-        <Link to="/articles/submit" className="navbar-link">
-          Post Article
-        </Link>
-        <img src="images/logo-newspaper.png" alt="nc news logo" />
-      </nav>
-    </header>
+            <Avatar
+              alt={user.name}
+              src={user.avatar_url}
+              sx={{ width: { md: 80 }, height: { md: 80 } }}
+            />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="drawer items"
+      >
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        {/* Display drawer temporarily on smaller screens*/}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          <SideDrawer
+            handleDrawerToggle={handleDrawerToggle}
+            handleClick={handleClick}
+            open={open}
+          />
+        </Drawer>
+        {/* Display drawer permanently on larger screens  */}
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+          open
+        >
+          <SideDrawer
+            handleDrawerToggle={handleDrawerToggle}
+            handleClick={handleClick}
+            open={open}
+          />
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar />
+        {props.children}
+      </Box>
+    </Box>
   );
 }

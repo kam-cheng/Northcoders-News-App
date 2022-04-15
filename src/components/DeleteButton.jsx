@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import handleErrorMessage from "../utils/handle-error-message";
-import "./DeleteButton.css";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 
 export default function DeleteArticle({
   itemId,
@@ -18,9 +20,17 @@ export default function DeleteArticle({
 
   const removeItem = async () => {
     try {
-      setDeletedItem(<p>Deleting {name}...</p>);
+      setDeletedItem(
+        <Typography variant="h5" textAlign="center">
+          Deleting {name}...
+        </Typography>
+      );
       await deleteApiFunction(itemId);
-      setDeletedItem(<p>{name} Deleted!</p>);
+      setDeletedItem(
+        <Typography variant="h5" textAlign="center">
+          {name} Deleted!
+        </Typography>
+      );
     } catch (err) {
       setDeletedItem(false);
       const customMessage = `attempt to delete ${name} failed - please reload page and try again`;
@@ -30,17 +40,13 @@ export default function DeleteArticle({
 
   if (author !== username) return <></>;
   return (
-    <button
+    <IconButton
+      aria-label="delete-button"
       onClick={() => {
         removeItem();
       }}
-      className="button-delete"
     >
-      <img
-        src="/images/delete-icon.png"
-        className={`icon ${size}`}
-        alt={`delete ${name} button`}
-      />
-    </button>
+      <DeleteOutlineOutlinedIcon fontSize="large" />
+    </IconButton>
   );
 }
