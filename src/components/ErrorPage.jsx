@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 
 export default function ErrorPage() {
   return (
-    <Box m={10}>
-      <Typography variant="h5" textAlign="center" gutterBottom>
-        Oops...looks like you are at the wrong page!
+    <Box m={5}>
+      <Typography variant="h6" textAlign="center" gutterBottom>
+        Oops...looks like you are not meant to be here!
       </Typography>
       <Button>
-        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Typography variant="h5">Go Back to HomePage</Typography>
         </Link>
       </Button>

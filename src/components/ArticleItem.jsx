@@ -11,6 +11,7 @@ import ErrorComponent from "./ErrorComponent";
 import DeleteButton from "./DeleteButton";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import {
+  Alert,
   Box,
   CircularProgress,
   Divider,
@@ -48,12 +49,7 @@ export default function ArticleItem() {
         <CircularProgress />
       </Box>
     );
-  if (error)
-    return (
-      <Typography variant="h5" color="error">
-        <ErrorComponent error={error} />
-      </Typography>
-    );
+  if (error) return <ErrorComponent error={error} />;
   if (deletedArticle) return <Box m={5}>{deletedArticle}</Box>;
   return (
     <Box maxWidth={1000} sx={{ ml: "auto", mr: "auto" }}>
