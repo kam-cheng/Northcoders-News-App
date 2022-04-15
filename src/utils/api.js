@@ -23,6 +23,20 @@ const fetchTopics = async () => {
   return topics;
 };
 
+const fetchUsernames = async () => {
+  const {
+    data: { users },
+  } = await axios.get(`${apiLink}/users`);
+  return users;
+};
+
+const fetchUser = async (username) => {
+  const {
+    data: { user },
+  } = await axios.get(`${apiLink}/users/${username}`);
+  return user;
+};
+
 const patchVotes = async ({ articleId, commentId, increment }) => {
   if (articleId) {
     const {
@@ -105,4 +119,6 @@ export {
   deleteComment,
   addArticle,
   deleteArticle,
+  fetchUsernames,
+  fetchUser,
 };
