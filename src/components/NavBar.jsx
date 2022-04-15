@@ -35,7 +35,6 @@ export default function NavBar(props) {
 
   // get user so we can display avatar
   const { user } = useContext(UserContext);
-  console.log(user);
 
   return (
     <header>

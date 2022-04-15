@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/User";
 import {
   Avatar,
-  Container,
+  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -33,11 +33,17 @@ export default function Users() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ p: 4 }}>
-      <Typography variant="h3" textAlign="center">
+    <Stack
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      spacing={2}
+      sx={{ m: 4 }}
+    >
+      <Typography variant="h3" gutterBottom>
         Profile
       </Typography>
-      <Paper elevation={3} sx={{ m: 2, p: 4 }}>
+      <Paper elevation={3} sx={{ p: 4, minWidth: 300 }}>
         <Stack
           direction="column"
           justifyContent="center"
@@ -52,29 +58,31 @@ export default function Users() {
             src={user.avatar_url}
             sx={{ width: 100, height: 100 }}
           />
-          <Typography variant="h4" color="text.secondary">
+          <Typography variant="subtitle2" color="text.secondary">
             {user.username}
           </Typography>
         </Stack>
       </Paper>
-      <FormControl>
-        <InputLabel id="demo-simple-select-label">Change User</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value=""
-          label="Username"
-          onChange={(event) => changeUser(event.target.value)}
-        >
-          {usernames.map(({ username }) => {
-            return (
-              <MenuItem value={username} key={username}>
-                {username}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-    </Container>
+      <Box pt={4}>
+        <FormControl sx={{ minWidth: 300 }}>
+          <InputLabel id="demo-simple-select-label">Change User</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={user.username}
+            label="Username"
+            onChange={(event) => changeUser(event.target.value)}
+          >
+            {usernames.map(({ username }) => {
+              return (
+                <MenuItem value={username} key={username}>
+                  {username}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Box>
+    </Stack>
   );
 }
