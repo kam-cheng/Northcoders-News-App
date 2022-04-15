@@ -69,7 +69,7 @@ export default function ArticleCard({
                 {topic}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {dayjs(created_at).toString()}
+                {dayjs(created_at).format("D MMM YYYY h:mm A")}
               </Typography>
             </Link>
             <Stack

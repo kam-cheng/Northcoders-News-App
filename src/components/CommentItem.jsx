@@ -48,7 +48,7 @@ export default function CommentItem({
             gutterBottom
             sx={{ fontWeight: "medium" }}
           >
-            {dayjs(created_at).toString()}
+            {dayjs(created_at).format("ddd D MMM YYYY h:mm A")}
           </Typography>
           <Divider sx={{ mb: 1 }} />
           <Typography variant="body1" gutterBottom>

@@ -62,7 +62,7 @@ export default function ArticleItem() {
           Topic : {articleItem.topic}
         </Typography>
         <Typography variant="subtitle2" gutterBottom textAlign="center">
-          {dayjs(articleItem.created_at).toString()}
+          {dayjs(articleItem.created_at).format("dddd D MMMM YYYY h:mm A")}
         </Typography>
         <Divider sx={{ mt: 2, mb: 4 }} />
         <Typography
