@@ -71,7 +71,13 @@ export default function NavBar(props) {
                 </Typography>
               </Button>
               <Box sx={{ flexGrow: 1 }} />
-              <Avatar alt={user.name} src={user.avatar_url} />
+              <IconButton
+                onClick={() => {
+                  navigate("/user");
+                }}
+              >
+                <Avatar alt={user.name} src={user.avatar_url} />
+              </IconButton>
             </Toolbar>
           </AppBar>
           <Box
