@@ -1,6 +1,6 @@
 # NC News App
 
-The NC News App is a front-end application enabling users to interact with the Northcoders News API, via a user-friendly UI.
+The NC News App is a front-end application for users to interact with the Northcoders News API via a user-friendly UI, built using the [Material UI](https://mui.com/) framework.
 
 ## Link to deployed version
 
