@@ -10,6 +10,7 @@ import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material";
+import Users from "./components/Users";
 
 const theme = createTheme({
   palette: {
@@ -39,6 +40,7 @@ function App() {
             <Box sx={{ minHeight: "85vh" }}>
               <Routes>
                 <Route path="/" element={<ArticleList />} />
+                <Route path="/user" element={<Users />} />
                 <Route path="/topics/:topic" element={<ArticleList />} />
                 <Route path="/articles/:article_id" element={<ArticleItem />} />
                 <Route path="/articles/submit" element={<PostArticle />} />
