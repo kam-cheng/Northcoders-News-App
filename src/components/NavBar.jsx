@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/User";
 import SideDrawer from "./SideDrawer";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -10,6 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 // set width of side drawer
 const drawerWidth = 240;
@@ -20,16 +22,20 @@ export default function NavBar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // opents drawer for mobile devices
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  // get user so we can display avatar
+  const { user } = useContext(UserContext);
+  console.log(user);
 
   return (
     <header>
@@ -64,12 +70,14 @@ export default function NavBar(props) {
                   NC News
                 </Typography>
               </Button>
+              <Box sx={{ flexGrow: 1 }} />
+              <Avatar alt={user.name} src={user.avatar_url} />
             </Toolbar>
           </AppBar>
           <Box
             component="nav"
             sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
+            aria-label="drawer items"
           >
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             {/* Display drawer temporarily on smaller screens*/}
