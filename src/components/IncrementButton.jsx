@@ -25,7 +25,7 @@ export default function IncrementButton({
       endIcon={<ExpandCircleDownOutlinedIcon />}
       loading={isLoading}
       loadingPosition="end"
-      variant="outlined"
+      variant="contained"
       onClick={() => {
         incrementLimit(5);
       }}

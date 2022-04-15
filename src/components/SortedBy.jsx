@@ -13,15 +13,15 @@ import MenuList from "@mui/material/MenuList";
 
 export default function SortedBy({ sortBy, setSortBy }) {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const sortByArray = [
     { name: "date", apiValue: "created_at" },
     { name: "comment count", apiValue: "comment_count" },
     { name: "votes", apiValue: "votes" },
   ];
-
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -42,7 +42,11 @@ export default function SortedBy({ sortBy, setSortBy }) {
 
   return (
     <>
-      <ButtonGroup variant="outlined" ref={anchorRef} aria-label="split button">
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="split button"
+      >
         <Button
           endIcon={<ArrowDropDownIcon />}
           aria-controls={open ? "split-button-menu" : undefined}

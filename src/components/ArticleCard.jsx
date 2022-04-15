@@ -57,7 +57,7 @@ export default function ArticleCard({
                 variant="h5"
                 gutterBottom
                 color="text.primary"
-                fontWeight={600}
+                fontWeight={400}
               >
                 {title}
               </Typography>

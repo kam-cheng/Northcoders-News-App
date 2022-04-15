@@ -40,7 +40,11 @@ export default function Order({ order, setOrder }) {
 
   return (
     <>
-      <ButtonGroup variant="outlined" ref={anchorRef} aria-label="split button">
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="split button"
+      >
         <Button
           endIcon={<ArrowDropDownIcon />}
           aria-controls={open ? "split-button-menu" : undefined}

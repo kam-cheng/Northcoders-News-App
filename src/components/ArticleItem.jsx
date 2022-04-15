@@ -10,7 +10,13 @@ import PostComment from "./PostComment";
 import ErrorComponent from "./ErrorComponent";
 import DeleteButton from "./DeleteButton";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 export default function ArticleItem() {
   const { article_id: articleId } = useParams();
@@ -36,7 +42,12 @@ export default function ArticleItem() {
     loadArticle();
   }, [articleId]);
 
-  if (isLoading) return <Typography variant="h5">Loading...</Typography>;
+  if (isLoading)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", pt: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
   if (error)
     return (
       <Typography variant="h5" color="error">
@@ -50,7 +61,7 @@ export default function ArticleItem() {
         <Typography
           variant="h4"
           gutterBottom
-          fontWeight="bold"
+          fontWeight={500}
           textAlign="center"
           sx={{ m: { md: 3 } }}
         >

@@ -9,20 +9,9 @@ import PostArticle from "./components/PostArticle";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer";
 import Box from "@mui/material/Box";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/";
 import Users from "./components/Users";
-
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#326177",
-    },
-    secondary: {
-      main: "#795548",
-    },
-  },
-});
+import defaultTheme from "./themes/defaultTheme";
 
 function App() {
   const [user, setUser] = useState({
@@ -35,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={defaultTheme}>
           <NavBar>
             <Box sx={{ minHeight: "85vh", pt: { md: 10 } }}>
               <Routes>
